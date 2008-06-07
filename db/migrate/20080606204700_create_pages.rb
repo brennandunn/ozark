@@ -6,7 +6,6 @@ class CreatePages < ActiveRecord::Migration
       t.string            :name
       t.text              :content
       t.references        :last_updated_by
-      t.string            :live_hash
       t.timestamps
     end
   end

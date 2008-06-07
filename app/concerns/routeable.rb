@@ -3,7 +3,9 @@ module Routeable
   def self.included(klass)
     klass.send :include, InstanceMethods
     klass.class_eval do
-      has_one :route, :dependent => :delete_all
+      has_one :_route, :class_name => 'Route', :as => :associated, :dependent => :delete
+      after_save :infer_route!
+      attr_accessor :slug
     end
   end
   
@@ -41,8 +43,18 @@ module Routeable
       :document
     end
     
-    def route=(route_str)
-      route ? route.update_attributes(:slug => route_str) : create_route(:slug => route_str)
+    def route
+      self._route || build__route
+    end
+    
+    
+    private
+    
+    def infer_route!
+      if route.slug.blank?
+        route.slug = self.slug || self.name.to_slug
+        route.save
+      end
     end
     
   end

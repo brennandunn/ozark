@@ -2,7 +2,7 @@ class Article < ActiveRecord::Base
   include Routeable, Versioned, Editable
   
   belongs_to :section
-  belongs_to :layout, :through => :section
+  has_one :layout, :through => :section
   
   has_many :comments, :dependent => :destroy, 
                       :after_add => Proc.new { |a, c| p.increment(:comments_count) }, 

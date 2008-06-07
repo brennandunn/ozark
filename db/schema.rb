@@ -9,7 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080606213824) do
+ActiveRecord::Schema.define(:version => 20080607023521) do
+
+  create_table "article_versions", :force => true do |t|
+    t.integer  "article_id",     :limit => 11
+    t.integer  "version",        :limit => 11
+    t.integer  "section_id",     :limit => 11
+    t.string   "name",           :limit => 128
+    t.text     "description"
+    t.text     "content"
+    t.integer  "author_id",      :limit => 11
+    t.integer  "comments_count", :limit => 11,  :default => 0
+    t.string   "live_hash"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "articles", :force => true do |t|
     t.integer  "section_id",     :limit => 11
@@ -21,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20080606213824) do
     t.string   "live_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "version",        :limit => 11
   end
 
   create_table "comments", :force => true do |t|
@@ -34,9 +49,31 @@ ActiveRecord::Schema.define(:version => 20080606213824) do
     t.datetime "updated_at"
   end
 
+  create_table "layout_versions", :force => true do |t|
+    t.integer  "layout_id",  :limit => 11
+    t.integer  "version",    :limit => 11
+    t.string   "name"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "layouts", :force => true do |t|
     t.string   "name"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "version",    :limit => 11
+  end
+
+  create_table "page_versions", :force => true do |t|
+    t.integer  "page_id",            :limit => 11
+    t.integer  "version",            :limit => 11
+    t.integer  "section_id",         :limit => 11
+    t.integer  "layout_id",          :limit => 11
+    t.string   "name"
+    t.text     "content"
+    t.integer  "last_updated_by_id", :limit => 11
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,9 +84,9 @@ ActiveRecord::Schema.define(:version => 20080606213824) do
     t.string   "name"
     t.text     "content"
     t.integer  "last_updated_by_id", :limit => 11
-    t.string   "live_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "version",            :limit => 11
   end
 
   create_table "routes", :force => true do |t|
