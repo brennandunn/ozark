@@ -1,7 +1,56 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+wrapper:
+  theme: default
+  name: wrapper
+  content: >
+    <html>
+      <o:render component="header"/>
+      <o:render/>
+      <o:render component="footer"/>
+    </html>
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+header:
+  theme: default
+  name: header
+  content: >
+    <h1>Welcome to my blog!</h1>
+  
+footer:
+  theme: default
+  name: footer
+  content: >
+    <h3>Copyright 2008</h3>
+    
+section:
+  theme: default
+  name: section
+  content: >
+    <h1 class="section_title"><o:name/></h1>
+    <o:articles/>
+    
+article_preview:
+  theme: default
+  name: article_preview
+  content: >
+    <div class="article_preview">
+      <o:link/>
+    </div>
+    
+article:
+  theme: default
+  name: article
+  content: >
+    <h1><o:name/></h1>
+
+comment:
+  theme: default
+  name: comment
+  content: >
+    <o:name/><br/>
+    <o:content/>
+
+comment_form:
+  theme: default
+  name: comment_form
+  content: >
+    Form here
+  

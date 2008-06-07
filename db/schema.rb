@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080607023521) do
+ActiveRecord::Schema.define(:version => 20080607033554) do
 
   create_table "article_versions", :force => true do |t|
     t.integer  "article_id",     :limit => 11
@@ -49,21 +49,12 @@ ActiveRecord::Schema.define(:version => 20080607023521) do
     t.datetime "updated_at"
   end
 
-  create_table "layout_versions", :force => true do |t|
-    t.integer  "layout_id",  :limit => 11
-    t.integer  "version",    :limit => 11
-    t.string   "name"
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "layouts", :force => true do |t|
+    t.integer  "theme_id",   :limit => 11
     t.string   "name"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "version",    :limit => 11
   end
 
   create_table "page_versions", :force => true do |t|
@@ -99,8 +90,15 @@ ActiveRecord::Schema.define(:version => 20080607023521) do
   end
 
   create_table "sections", :force => true do |t|
-    t.integer  "layout_id",  :limit => 11
+    t.integer  "theme_id",   :limit => 11
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "themes", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

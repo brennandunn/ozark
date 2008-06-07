@@ -12,7 +12,7 @@ class RenderController < ApplicationController
   end
   
   def handle_document
-    @dispatch.render ; render!
+    @dispatch.render ; finish!
   end
   
   
@@ -22,7 +22,7 @@ class RenderController < ApplicationController
     @path ||= [*params[:path]].join('/')
   end
   
-  def render!
+  def finish!
     @performed_render = true
   end
   

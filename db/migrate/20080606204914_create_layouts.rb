@@ -1,6 +1,7 @@
 class CreateLayouts < ActiveRecord::Migration
   def self.up
     create_table :layouts do |t|
+      t.references      :theme
       t.string          :name
       t.text            :content
       t.timestamps

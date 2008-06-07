@@ -4,6 +4,7 @@ require 'test_help'
 require 'factories'
 require 'shoulda'
 require 'quietbacktrace'
+require 'hpricot_test_extension'
 
 class Test::Unit::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method

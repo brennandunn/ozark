@@ -8,3 +8,6 @@ end
 
 Factory.define :article do |a|
 end
+
+Factory.define :theme do |t|
+end

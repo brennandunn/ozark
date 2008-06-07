@@ -1,8 +1,11 @@
 class Article < ActiveRecord::Base
-  include Routeable, Versioned, Editable
+  include Routeable, Versioned, Renderable
+  include Tags::Base, Tags::Shared
+  
+  Composition = ['wrapper', 'article', 'comment', 'comment_form'].freeze
   
   belongs_to :section
-  has_one :layout, :through => :section
+  has_one :theme, :through => :section
   
   has_many :comments, :dependent => :destroy, 
                       :after_add => Proc.new { |a, c| p.increment(:comments_count) }, 
