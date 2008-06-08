@@ -2,6 +2,8 @@ class Section < ActiveRecord::Base
   include Routeable, Renderable
   include Tags::Base, Tags::Section
   
+  class NoSectionsError < OzarkError ; end
+  
   Composition = ['wrapper', 'section', 'article_preview']
   
   belongs_to :section

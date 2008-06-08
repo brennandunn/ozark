@@ -1,0 +1,24 @@
+.article {
+	padding-bottom: 15px;
+	border-bottom: 1px solid #f4f4f4;
+}
+
+.article h3 {
+	margin-bottom: 4px;
+}
+
+.article h3 span {
+	color: #777;
+	font-weight: normal;
+	padding-left: 5px;
+}
+
+.article span.unpublished {
+	background: #000;
+	color: #fff;
+	padding: 2px 5px;
+}
+
+.article .meta {
+	font-size: 12px;
+}

@@ -12,6 +12,8 @@ body {
 
 .col2 { width: 390px; padding: 0 15px; }
 
+span.space { padding: 0 5px; }
+
 a { color: #00f; }
 
 h1 {
@@ -51,13 +53,15 @@ div#bar {
 div#bar .inset {
 	margin: 0 auto;
 	width: 850px;
-	padding: 4px 10px;
+	padding: 6px 10px;
 	text-align: right;
 }
 
 div#bar a {
 	color: #fff;
 }
+
+div#bar span { padding: 0 9px; color: #aaa; }
 
 div#mast {
 	padding-bottom: 10px;
@@ -100,4 +104,33 @@ div#mast ul li a {
 
 div#mast ul li a:hover {
 	background: #fffcf2;
+}
+
+ul.options { 
+	list-style: none; 
+	padding-bottom: 7px;
+	margin-bottom: 15px;
+	border-bottom: 1px dotted #ccc;
+}
+
+ul.options li {
+	display: inline;
+	font-size: 15px;
+	font-weight: bold;
+	padding-right: 15px;
+}
+
+ul.options li a {
+	font-weight: normal;
+}
+
+div.exception {
+	padding: 15px;
+	background: #fffdea;
+	border: 2px solid #f6efa5;
+}
+
+div.exception .back {
+	margin-top: 15px;
+	font-weight: bold;
 }

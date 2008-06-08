@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080607033554) do
+ActiveRecord::Schema.define(:version => 20080608222513) do
 
   create_table "article_versions", :force => true do |t|
     t.integer  "article_id",     :limit => 11
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20080607033554) do
     t.string   "live_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "published_at"
   end
 
   create_table "articles", :force => true do |t|
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20080607033554) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "version",        :limit => 11
+    t.datetime "published_at"
   end
 
   create_table "comments", :force => true do |t|

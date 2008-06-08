@@ -7,6 +7,7 @@ Factory.define :section do |s|
 end
 
 Factory.define :article do |a|
+  a.published_at Time.now
 end
 
 Factory.define :theme do |t|

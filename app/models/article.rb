@@ -9,7 +9,14 @@ class Article < ActiveRecord::Base
   
   has_many :comments, :dependent => :destroy
   
+  named_scope :all, :order => 'created_at'
+  named_scope :published, :conditions => ['published_at is not null'], :order => 'created_at'
+  
   validates_presence_of :slug   # an article must have a slug attached to it
+  
+  def published?
+    not published_at.nil?
+  end
   
   def process!
     component = theme.has?('article')

@@ -1,0 +1,10 @@
+<% add_stylesheet 'articles' %>
+<h1>Articles</h1>
+
+<ul class="options">
+  <li><%= link_to_unless_current 'All', articles_path %></li>
+  <li><%= link_to_unless_current 'Published', published_articles_path %></li>
+  <li><%= link_to 'New article', new_article_path %></li>
+</ul>
+
+<%= render :partial => @articles %>

@@ -13,7 +13,7 @@ module Routeable
     route_string = route[0...-1] if route_string.last == '/' and route_string.length > 1  # strip trailing slashes
     if route = Route.find_by_permalink(route_string)
       if route.redirect_to.blank?
-        route.associated
+        route.associated if route.respond_to?(:published_at) and !route.published_at.nil?
       else
         Redirect.new(route.redirect_to)
       end
