@@ -12,7 +12,7 @@ module Dispatch
     end
     
     def render
-      response.body = if @found.respond_to?(:render)
+      @response.body = if @found.respond_to?(:render)
                         @found.current.render
                       else
                         ''

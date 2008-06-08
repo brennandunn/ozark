@@ -7,7 +7,7 @@ module Tags
       tag 'link' do |tag|
         %{<a href="/#{self.uri}">#{self.name}</a>}
       end
-
+      
     end
 
     def self.included(receiver)

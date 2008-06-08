@@ -6,12 +6,23 @@ class Route < ActiveRecord::Base
   
   attr_accessor :ignore_compile
   
+  named_scope :attached, :conditions => ['associated_id is not null']
+  named_scope :redirects, :conditions => ['redirect_to is not null']
+  
   class << self
     
     def redirect!(permalink, uri)
       self.create :permalink => permalink, :redirect_to => uri, :ignore_compile => true
     end
     
+    def sitemap
+      attached.find(:all, :order => 'permalink asc', :include => :associated)
+    end
+    
+  end
+  
+  def display_permalink
+    '/' + permalink
   end
   
   private

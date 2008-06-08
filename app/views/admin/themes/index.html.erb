@@ -1,0 +1,5 @@
+<% @themes.each do |theme| %>
+  <% div_for theme do %>
+    <%= theme.name %> - <%= theme.complete? %>
+  <% end %>
+<% end %>  

@@ -1,8 +1,8 @@
 class Theme < ActiveRecord::Base
   
-  RequiredComponents = ['wrapper', 'header', 'footer', 'section', 'article_preview', 'article', 'comment', 'comment_form'].freeze
+  RequiredComponents = ['wrapper', 'section', 'article_preview', 'article', 'comment', 'comment_form'].freeze
 
-  has_many :components, :class_name => 'Layout' do
+  has_many :components do
     RequiredComponents.each do |component|
       define_method(component) do
         find_by_name(component)
@@ -11,7 +11,7 @@ class Theme < ActiveRecord::Base
   end
   
   def incomplete?
-    get_components.include?(nil)
+    not incomplete_items.empty?
   end
   
   def complete?
@@ -19,7 +19,7 @@ class Theme < ActiveRecord::Base
   end
   
   def incomplete_items
-    RequiredComponents - get_components.compact.map(&:name)
+    RequiredComponents - get_components
   end
   
   def has?(component)
@@ -30,9 +30,7 @@ class Theme < ActiveRecord::Base
   private
   
   def get_components
-    @_components ||= RequiredComponents.map do |component|
-                      components.send(component)
-                     end
+    @_components ||= components.find_all_by_name(RequiredComponents).map(&:name)
   end
 
 end

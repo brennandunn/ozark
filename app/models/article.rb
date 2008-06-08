@@ -1,15 +1,18 @@
 class Article < ActiveRecord::Base
   include Routeable, Versioned, Renderable
-  include Tags::Base, Tags::Shared
+  include Tags::Base, Tags::Shared, Tags::Article
   
   Composition = ['wrapper', 'article', 'comment', 'comment_form'].freeze
   
   belongs_to :section
-  has_one :theme, :through => :section
+  delegate :theme, :to => :section
   
-  has_many :comments, :dependent => :destroy, 
-                      :after_add => Proc.new { |a, c| p.increment(:comments_count) }, 
-                      :after_remove => Proc.new { |a, c| p.decrement(:comments_count) }
+  has_many :comments, :dependent => :destroy
   
+  
+  def process!
+    component = theme.has?('article')
+    self.render(component)
+  end
   
 end

@@ -1,6 +1,6 @@
-class CreateLayouts < ActiveRecord::Migration
+class CreateComponents < ActiveRecord::Migration
   def self.up
-    create_table :layouts do |t|
+    create_table :components do |t|
       t.references      :theme
       t.string          :name
       t.text            :content
@@ -9,6 +9,6 @@ class CreateLayouts < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :layouts
+    drop_table :components
   end
 end

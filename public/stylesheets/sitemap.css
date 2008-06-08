@@ -1,0 +1,15 @@
+
+.route {
+	padding: 5px 0;
+	border-bottom: 1px solid #ccc;
+}
+
+.route span {
+	padding-left: 18px;
+	color: #888;
+}
+
+.route span a {
+	padding-left: 5px;
+	color: #000;
+}

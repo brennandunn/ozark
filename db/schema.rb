@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20080607033554) do
     t.datetime "updated_at"
   end
 
-  create_table "layouts", :force => true do |t|
+  create_table "components", :force => true do |t|
     t.integer  "theme_id",   :limit => 11
     t.string   "name"
     t.text     "content"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(:version => 20080607033554) do
     t.integer  "page_id",            :limit => 11
     t.integer  "version",            :limit => 11
     t.integer  "section_id",         :limit => 11
-    t.integer  "layout_id",          :limit => 11
+    t.integer  "component_id",       :limit => 11
     t.string   "name"
     t.text     "content"
     t.integer  "last_updated_by_id", :limit => 11
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(:version => 20080607033554) do
 
   create_table "pages", :force => true do |t|
     t.integer  "section_id",         :limit => 11
-    t.integer  "layout_id",          :limit => 11
+    t.integer  "component_id",       :limit => 11
     t.string   "name"
     t.text     "content"
     t.integer  "last_updated_by_id", :limit => 11

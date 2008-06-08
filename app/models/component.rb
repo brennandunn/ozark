@@ -1,4 +1,4 @@
-class Layout < ActiveRecord::Base
+class Component < ActiveRecord::Base
   include Versioned, Renderable
   
   belongs_to :theme

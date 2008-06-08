@@ -1,2 +1,5 @@
 default:
   name: Default Theme
+  
+incomplete:
+  name: Incomplete Theme  

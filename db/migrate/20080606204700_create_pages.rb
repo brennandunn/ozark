@@ -2,7 +2,7 @@ class CreatePages < ActiveRecord::Migration
   def self.up
     create_table :pages do |t|
       t.references        :section
-      t.references        :layout
+      t.references        :component
       t.string            :name
       t.text              :content
       t.references        :last_updated_by
