@@ -14,7 +14,7 @@
   
   <div id="bar">
     <div class="inset">
-      You are logged in
+      <%= link_to 'Preview', '/' %> | You are logged in
     </div>
   </div>
   
@@ -23,9 +23,9 @@
     <div id="mast">
       <p><%= link_to 'Ozark', dashboard_path %></p>
       <ul>
-        <li><%= link_to 'Articles' %></li>
-        <li><%= link_to 'Pages' %></li>
-        <li><%= link_to 'Sections' %></li>
+        <li><%= link_to 'Articles', articles_path %></li>
+        <li><%= link_to 'Pages', pages_path %></li>
+        <li><%= link_to 'Sections', sections_path %></li>
         <li><%= link_to 'Assets' %></li>
         <li><%= link_to 'Settings' %></li>
       </ul>  

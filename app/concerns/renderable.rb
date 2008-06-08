@@ -11,7 +11,7 @@ module Renderable
     def render(component = nil)
       initialize_parser_and_context
       return parse_object(component) if component
-      raise IncompleteThemeError.new unless self.theme.complete?
+      raise IncompleteThemeError.new if self.theme.incomplete?
       if found_component = self.theme.has?(self.class::Composition.first)
         parse_object(found_component)
       else

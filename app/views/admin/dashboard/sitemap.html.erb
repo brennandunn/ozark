@@ -1,19 +1,21 @@
 <% add_stylesheet 'sitemap' %>
 
-<h1>A view from above</h1>
+<div class="left col2 sitemap">
+  <h1>Sitemap</h1>
 
-<% Route.sitemap.each do |route| %>
-  <% div_for route do %>
-    <%= route.display_permalink %> <span>&rarr; <%= link_to route.associated.name, route.associated %></span>
-  <% end %>
-<% end %>  
+  <% Route.sitemap.each do |route| %>
+    <% div_for route do %>
+      <%= route.display_permalink %> <span>&rarr; <%= link_to route.associated.name, route.associated %></span>
+    <% end %>
+  <% end %>  
+</div>
 
-<div class="spacer"></div>
+<div class="left col2 redirects">
+  <h1>Redirects</h1>
 
-<h1>Redirects</h1>
-
-<% Route.redirects.each do |route| %>
-  <% div_for route do %>
-    <%= route.display_permalink %> <span>connects to</span> <%= route.redirect_to %>
-  <% end %>
-<% end %>  
+  <% Route.redirects.each do |route| %>
+    <% div_for route do %>
+      <%= route.display_permalink %> <span>connects to</span> <%= route.redirect_to %>
+    <% end %>
+  <% end %>  
+</div>

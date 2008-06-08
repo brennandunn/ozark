@@ -1,0 +1,31 @@
+<% div_for section do %>
+  
+  <h2>
+    <%= section.name %>
+    <span>mapped to <%= section.route.display_permalink %></span>
+  </h2>
+    <% section.children.each do |child| %>
+      <% div_for child do %>
+      <table class="summary">
+        <tr>
+          <td class="type"><span><%= child.class.to_s.downcase %></span></td>
+          <td class="title"><%= child.name %></td>
+          <td class="slug"><%= link_to child.route.display_slug, child.route.display_permalink %></td>
+          <td class="comments">&nbsp;<%= pluralize(child.comments.size, 'comment') if child.respond_to?(:comments) %></td>
+        </tr>  
+      </table>
+      <% end %>
+    <% end %>
+    <div class="section">
+      <table class="summary">
+        <tr>
+          <td class="type">&nbsp;</td>
+          <td class="all">
+            <%= link_to 'View all objects within section' %>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+    </div>  
+<% end %>  

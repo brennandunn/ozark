@@ -1,15 +1,24 @@
+.sitemap, .redirects {
+	font-size: 12px;
+}
 
 .route {
 	padding: 5px 0;
 	border-bottom: 1px solid #ccc;
 }
 
-.route span {
+.sitemap .route span {
 	padding-left: 18px;
 	color: #888;
 }
 
-.route span a {
+.sitemap .route span a {
 	padding-left: 5px;
 	color: #000;
+}
+
+.redirects .route span {
+	color: #999;
+	padding: 0 6px;
+	font-style: italic;
 }

@@ -7,9 +7,18 @@ body {
 	font-family: HelveticaNeue, "Helvetica Neue", helvetica, arial;
 }
 
+.left { float: left; }
 .clearfix { clear: both; }
 
+.col2 { width: 390px; padding: 0 15px; }
+
+a { color: #00f; }
+
 h1 {
+	margin-bottom: 10px;
+}
+
+h2 {
 	padding: 3px 7px;
 	background: #f2f9fd;
 	font-size: 22px;
@@ -18,7 +27,7 @@ h1 {
 	margin-bottom: 7px;
 }
 
-h2 {
+h3 {
 	font-size: 20px;
 	color: #252525;
 	margin-bottom: 7px;
@@ -44,6 +53,10 @@ div#bar .inset {
 	width: 850px;
 	padding: 4px 10px;
 	text-align: right;
+}
+
+div#bar a {
+	color: #fff;
 }
 
 div#mast {

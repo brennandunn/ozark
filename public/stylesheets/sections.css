@@ -1,0 +1,45 @@
+.section h2 span {
+	color: #aaa;
+	font-weight: normal;
+	padding-left: 5px;
+}
+
+.section .article, .section .page {
+	font-size: 13px;
+	padding: 3px 5px;
+	border-bottom: 1px solid #ddd;
+}
+
+table.summary { width: 100%; }
+
+table.summary td.type {
+	width: 90px;
+	text-align: right;
+	padding-right: 7px;
+}
+
+table.summary td.type span {
+	background: #000;
+	padding: 2px 5px;
+}
+
+.section .article table.summary td.type { color: #ff7878; }
+.section .page table.summary td.type { color: #befaff; }
+
+table.summary td.title {
+	font-weight: bold;
+	width: 400px;
+}
+
+table.summary td.slug {
+	width: 200px;
+}
+
+table.summary td.comments {
+	text-align: right;
+}
+
+table.summary td.all {
+	font-size: 12px;
+	padding-left: 7px;
+}

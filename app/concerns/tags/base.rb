@@ -10,7 +10,7 @@ module Tags
 
       tag 'render' do |tag|
         if component = tag.attr['component']
-          if found = self.theme.has?(component)
+          if found = self.respond_to?(:component) ? self.component : self.theme.has?(component)
             found.content
           else
             TagError.new("Theme component '#{component}' not found")

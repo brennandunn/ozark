@@ -7,8 +7,12 @@ class Section < ActiveRecord::Base
   belongs_to :section
   belongs_to :theme
   
-  has_many :articles, :order => 'created_at desc'
-  has_many :pages
+  has_many :articles, :order => 'created_at desc', :include => :_route
+  has_many :pages, :include => :_route
+  
+  def children
+    (articles + pages).sort { |x, y| x.route.permalink <=> y.route.permalink }
+  end
   
   def process!
     component = theme.has?('section')

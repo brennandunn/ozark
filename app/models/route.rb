@@ -21,6 +21,10 @@ class Route < ActiveRecord::Base
     
   end
   
+  def display_slug
+    slug.blank? ? '/' : slug
+  end
+  
   def display_permalink
     '/' + permalink
   end
