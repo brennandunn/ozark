@@ -1,7 +1,7 @@
 = Ozark
 === The simple man's blog
 
-The goal of Ozark is to create a simple and sleek blog application that's meant for the everyday blogger. It lacks a robust user manager, roles are nonexistant, and most importantly (at least in my mind) doesn't use Liquid. I loathe Liquid - blame my exposure to Radiant's Radius parser, but I prefer XML to funky curly brackets. So I decided to create a blogging app from the ground up that is entirely modular, encourages extension (through the use of exposing new Radius tags), and lightweight.
+The goal of Ozark is to create a simple and sleek blog application that's meant for the everyday blogger. It lacks a robust user manager, roles are nonexistant, and most importantly (at least in my mind) doesn't use Liquid. I loathe Liquid - blame my exposure to Radiant's Radius parser, but I prefer XML to funky curly brackets. So I decided to create a blogging app from the ground up that is entirely modular, encourages extension (through the use of exposing new Radius tags), and is lightweight.
 
 
 === What's under the hood
