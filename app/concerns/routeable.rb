@@ -5,7 +5,6 @@ module Routeable
     klass.class_eval do
       has_one :_route, :class_name => 'Route', :as => :associated, :dependent => :delete
       after_save :infer_route!
-      attr_accessor :slug
     end
   end
   
@@ -13,7 +12,7 @@ module Routeable
     route_string = route[0...-1] if route_string.last == '/' and route_string.length > 1  # strip trailing slashes
     if route = Route.find_by_permalink(route_string)
       if route.redirect_to.blank?
-        route.associated if route.respond_to?(:published_at) and !route.published_at.nil?
+        route.associated unless route.associated.respond_to?(:published_at) and route.associated.published_at.nil?
       else
         Redirect.new(route.redirect_to)
       end
@@ -35,6 +34,14 @@ module Routeable
   
   module InstanceMethods
     
+    def slug
+      @slug || self.route.slug || ''
+    end
+    
+    def slug=(str)
+      @slug = str
+    end
+    
     def uri
       self.route.permalink if self.route
     end
@@ -52,7 +59,7 @@ module Routeable
     
     def infer_route!
       if route.slug.blank?
-        route.slug = self.slug || self.name.to_slug
+        route.slug = @slug || self.name.to_slug
         route.save
       end
     end

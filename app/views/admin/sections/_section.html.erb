@@ -8,9 +8,9 @@
       <% div_for child do %>
       <table class="summary">
         <tr>
-          <td class="type"><span><%= child.class.to_s.downcase %></span></td>
-          <td class="title"><%= child.name %></td>
-          <td class="slug"><%= link_to child.route.display_slug, child.route.display_permalink %></td>
+          <td class="type"><span><%= status_of(child) %><%= child.class.to_s.downcase %></span></td>
+          <td class="title"><%= link_to child.name, child.is_a?(Article) ? edit_article_path(child) : edit_page_path(child) %></td>
+          <td class="slug"><%= child.route.display_slug %></td>
           <td class="comments">&nbsp;<%= pluralize(child.comments.size, 'comment') if child.respond_to?(:comments) %></td>
         </tr>  
       </table>

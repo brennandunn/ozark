@@ -12,6 +12,14 @@ class Section < ActiveRecord::Base
   has_many :articles, :order => 'created_at desc', :include => :_route
   has_many :pages, :include => :_route
   
+  def slug
+    @slug || self.route.slug.blank? ? '/' : self.route.slug || '/'
+  end
+  
+  def slug=(str)
+    @slug = str == '/' ? '' : str
+  end
+  
   def children
     (articles + pages).sort { |x, y| x.route.permalink <=> y.route.permalink }
   end

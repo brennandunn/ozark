@@ -134,3 +134,28 @@ div.exception .back {
 	margin-top: 15px;
 	font-weight: bold;
 }
+
+form.model {
+	border-left: 16px solid #e1f6ff;
+	padding: 20px 0 20px 34px;
+}
+
+form.model h4 {
+	color: #333;
+	font-size: 18px;
+}
+
+form.model p {
+	font-size: 13px;
+}
+
+form.model fieldset {
+	border: none;
+	margin-top: 5px;
+	margin-bottom: 25px;
+}
+
+form.model input {
+	padding: 1px 2px;
+	font-size: 19px;
+}

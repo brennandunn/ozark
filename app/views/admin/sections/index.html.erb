@@ -1,4 +1,8 @@
 <% add_stylesheet 'sections' %>
 <h1>Sections</h1>
 
+<ul class="options">
+  <li><%= link_to 'New section', new_section_path %></li>
+</ul>
+
 <%= render :partial => @sections %>

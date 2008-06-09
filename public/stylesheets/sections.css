@@ -1,3 +1,7 @@
+.section {
+	margin-bottom: 25px;
+}
+
 .section h2 span {
 	color: #aaa;
 	font-weight: normal;
@@ -13,7 +17,7 @@
 table.summary { width: 100%; }
 
 table.summary td.type {
-	width: 90px;
+	width: 160px;
 	text-align: right;
 	padding-right: 7px;
 }
@@ -28,7 +32,7 @@ table.summary td.type span {
 
 table.summary td.title {
 	font-weight: bold;
-	width: 400px;
+	width: 330px;
 }
 
 table.summary td.slug {

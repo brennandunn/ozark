@@ -6,8 +6,9 @@
   <p class="meta">
     <% unless article.published? %>
       <span class="unpublished">unpublished</span> <span class="space">|</span> 
-    <% end %>
+    <% end %> 
+    Filed under <%= link_to article.section.name, article.section %> <span class="space">|</span> 
     <%= pluralize article.comments.size, 'comment' %> <span class="space">|</span> 
-    accessible via <%= link_to article.route.display_permalink, article.route.display_permalink %>
+    accessible via <%= web_path(article) %>
   </p>  
 <% end %>  

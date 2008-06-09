@@ -19,6 +19,17 @@ class Admin::ArticlesController < ApplicationController
   def edit
   end
   
+  def create
+    @article.attributes = params[:article]
+    @article.save
+    redirect_to :action => :index
+  end
+  
+  def update
+    @article.attributes = params[:article]
+    @article.save
+    redirect_to :action => :index
+  end
   
   private
   

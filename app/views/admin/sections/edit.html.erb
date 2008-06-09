@@ -1,0 +1,26 @@
+<% add_stylesheet 'sections' %>
+<h1><%= header_for @section, 'section' %></h1>
+
+<% form_for @section, :html => { :class => 'model' } do |f| %>
+  
+  <h4>Name</h4>
+  <fieldset>
+    <%= f.text_field :name, :size => 50 %>
+  </fieldset>  
+  
+  <h4>Slug</h4>
+  <p>
+    The path that this section will respond to, and content stored in this section will inherit.
+  </p>
+  <fieldset>
+    <%= f.text_field :slug, :size => 25 %>
+  </fieldset> 
+  
+  <h4>Theme</h4> 
+  <fieldset>
+    <%= f.select :theme_id, Theme.all.map { |x| [ x.name, x.id ] } %>
+  </fieldset>  
+    
+  <%= submit_tag 'Save' %>
+  
+<% end %>  

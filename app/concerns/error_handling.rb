@@ -1,7 +1,7 @@
 module ErrorHandling
   
   def self.included(klass)
-    klass.rescue_from(Section::NoSectionsError, :with => :rescuer)
+    klass.rescue_from(OzarkError, :with => :rescuer)
   end
   
   
