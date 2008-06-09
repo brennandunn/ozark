@@ -1,0 +1,16 @@
+<h1>Blog Settings</h1>
+
+<% form_tag settings_path, :method => :put, :class => 'model' do %>
+
+  <h4>Blog Title</h4>
+  <fieldset>
+    <%= text_field_tag 'config[site][title]', Configurator[:site, :title] %>
+  </fieldset>
+  
+  <h4>Subtitle</h4>
+  <fieldset>
+    <%= text_field_tag 'config[site][subtitle]', Configurator[:site, :subtitle] %>
+  </fieldset>
+
+  <%= submit_tag 'Save' %>
+<% end %>  

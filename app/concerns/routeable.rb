@@ -39,7 +39,7 @@ module Routeable
     end
     
     def slug=(str)
-      @slug = str
+      @slug = str unless str.blank?
     end
     
     def uri

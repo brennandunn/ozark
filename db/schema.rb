@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080608222513) do
+ActiveRecord::Schema.define(:version => 20080609135851) do
 
   create_table "article_versions", :force => true do |t|
     t.integer  "article_id",     :limit => 11
@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(:version => 20080608222513) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "config", :force => true do |t|
+    t.integer "associated_id",   :limit => 11
+    t.string  "associated_type"
+    t.string  "namespace"
+    t.string  "key",             :limit => 40, :default => "", :null => false
+    t.string  "value"
   end
 
   create_table "page_versions", :force => true do |t|

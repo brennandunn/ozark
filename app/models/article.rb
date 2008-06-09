@@ -11,9 +11,7 @@ class Article < ActiveRecord::Base
   
   named_scope :all, :order => 'updated_at desc', :include => :_route
   named_scope :published, :conditions => ['published_at is not null'], :order => 'updated_at desc', :include => :_route
-  
-  validates_presence_of :slug   # an article must have a slug attached to it
-  
+    
   def published?
     not published_at.nil?
   end

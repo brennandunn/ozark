@@ -6,12 +6,13 @@ module Tags
     
     module InstanceMethods
       include ::Tags::Taggable
-      include ActionView::Helpers::DateHelper      
+      include ActionView::Helpers::DateHelper     
+      include ActionView::Helpers::TagHelper 
 
       tag 'render' do |tag|
         if component = tag.attr['component']
           if found = self.respond_to?(:component) ? self.component : self.theme.has?(component)
-            found.content
+            self.render(found)
           else
             TagError.new("Theme component '#{component}' not found")
           end
@@ -19,13 +20,24 @@ module Tags
           self.process!
         end
       end
+            
+      # conditionals
+      tag 'if' do |tag|
+        clean = true
+        tag.attr.each do |key|
+          
+        end
+        tag.expand if clean
+      end
       
-      [:name, :content].each do |method|
+      # string columns
+      [:id, :name, :content].each do |method|
         tag(method.to_s) do |tag|
           self.send(method)
         end
       end
       
+      # time columns
       [:created_at, :updated_at].each do |method|
         tag(method.to_s) do |tag|
           datetime = self.send(method)
@@ -34,6 +46,31 @@ module Tags
             time_ago_in_words(datetime)
           end
         end
+      end
+      
+      # site variables
+      tag('site') { |tag| tag.expand }
+      [:title, :subtitle].each do |config|
+        tag("site:#{config}") do |tag|
+          Configurator[:site, config]
+        end
+      end
+      
+      
+      protected
+      
+      def stylesheet_path(name)
+        "/stylesheets/#{self.is_a?(Section) ? self.system_name : self.section.system_name}/#{name}.css"
+      end
+      
+      def form_tag(uri, attributes = {}, &block)
+        attributes.reverse_merge!({ :method => 'post' })
+        attributes.stringify_keys!
+        %{
+          <form action="#{uri}"#{tag_options(attributes)}>
+            #{yield}
+          </form>
+        }
       end
 
     end

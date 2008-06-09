@@ -4,9 +4,10 @@ module Tags
     module InstanceMethods
       include ::Tags::Taggable      
 
-      tag 'articles' do
+      tag('articles') { |tag| tag.expand }
+      tag 'articles:each' do
         component = self.theme.has?('article_preview')
-        self.articles.inject('') do |str, article|
+        self.articles.published.inject('') do |str, article|
           str << article.render(component)
         end
       end

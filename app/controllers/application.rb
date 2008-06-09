@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
   
   helper_method :stylesheets, :add_stylesheet
   
+  def assistant
+    @_assistant ||= AssistantProxy.new(self)
+  end
+  
+  
   protected
   
   def guarantee_sections

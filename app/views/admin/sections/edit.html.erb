@@ -1,5 +1,8 @@
 <% add_stylesheet 'sections' %>
 <h1><%= header_for @section, 'section' %></h1>
+<ul class="options">
+  <li><%= link_to 'Cancel', sections_path %></li>
+</ul>
 
 <% form_for @section, :html => { :class => 'model' } do |f| %>
   
@@ -8,13 +11,16 @@
     <%= f.text_field :name, :size => 50 %>
   </fieldset>  
   
+  <% if @section.new_record? %>
   <h4>Slug</h4>
   <p>
-    The path that this section will respond to, and content stored in this section will inherit.
+    The path that this section will respond to, and content stored in this section will inherit. For the sake of all things good and pure, 
+    once a slug is defined it shouldn't be changed. This would adversely affect child pages permalinks.
   </p>
   <fieldset>
     <%= f.text_field :slug, :size => 25 %>
   </fieldset> 
+  <% end %>
   
   <h4>Theme</h4> 
   <fieldset>

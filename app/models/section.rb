@@ -1,6 +1,6 @@
 class Section < ActiveRecord::Base
   include Routeable, Renderable
-  include Tags::Base, Tags::Section
+  include Tags::Base, Tags::Shared, Tags::Section
   
   class NoSectionsError < OzarkError ; end
   
@@ -22,6 +22,10 @@ class Section < ActiveRecord::Base
   
   def children
     (articles + pages).sort { |x, y| x.route.permalink <=> y.route.permalink }
+  end
+  
+  def system_name
+    name.underscore
   end
   
   def process!
