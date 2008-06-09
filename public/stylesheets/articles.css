@@ -5,13 +5,14 @@
 }
 
 .article h3 {
-	margin-bottom: 4px;
+	font-size: 17px;
+	margin-bottom: 6px;
 }
 
 .article h3 span {
 	color: #777;
 	font-weight: normal;
-	padding-left: 5px;
+	padding-left: 3px;
 }
 
 .article span.unpublished {

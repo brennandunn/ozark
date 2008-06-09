@@ -1,5 +1,8 @@
 <% add_stylesheet 'articles' %>
 <h1><%= header_for @article, 'article' %></h1>
+<ul class="options">
+  <li><%= link_to 'Cancel', articles_path %></li>
+</ul>
 
 <% form_for @article, :html => { :class => 'model' } do |f| %>
   

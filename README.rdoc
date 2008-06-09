@@ -1,0 +1,50 @@
+= Ozark
+=== The simple man's blog
+
+The goal of Ozark is to create a simple and sleek blog application that's meant for the everyday blogger. It lacks a robust user manager, roles are nonexistant, and most importantly (at least in my mind) doesn't use Liquid. I loathe Liquid - blame my exposure to Radiant's Radius parser, but I prefer XML to funky curly brackets. So I decided to create a blogging app from the ground up that is entirely modular, encourages extension (through the use of exposing new Radius tags), and lightweight.
+
+
+=== What's under the hood
+
+* Sports it's own router / dispatcher advanced enough to handle permalinks, redirects and mixin routing. Mixin routing? Simply include the Routeable module into any model to expose it.
+
+* Sections are composed of articles and pages, and whatever else you might want.
+
+* A UI that your grandmother could use
+
+* Convention over configuration. No fluff for the sake of a long list of features. Caters to the majority.
+
+
+=== What are some goals?
+
+* DB driven templates (as opposed to flat file) with versioning, with the intention of having a staging/live mode to facilitate template changes on a live site without treating your viewers like guinea pigs.
+
+* Some sort of fancy way of exporting / sharing templates. A RESTful way of letting Ozark deployments deploy templates to each other.
+
+* A robust, but non-bloated, tag set
+
+
+=== License
+
+Copyright (c) 2008 Brennan Dunn, http://www.brennandunn.com/
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
