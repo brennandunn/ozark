@@ -8,7 +8,7 @@
       <span class="unpublished">unpublished</span> <span class="space">|</span> 
     <% end %> 
     Filed under <%= link_to article.section.name, article.section %> <span class="space">|</span> 
-    <%= pluralize article.comments.size, 'comment' %> <span class="space">|</span> 
+    <%= pluralize article.comments.count, 'comment' %> <span class="space">|</span> 
     accessible via <%= web_path(article) %>
   </p>  
 <% end %>  

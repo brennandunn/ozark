@@ -8,8 +8,9 @@
 }
 
 .sitemap .route span {
+	float: right;
 	padding-left: 18px;
-	color: #888;
+	color: #ddd;
 }
 
 .sitemap .route span a {

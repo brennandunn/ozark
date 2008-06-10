@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080609135851) do
+ActiveRecord::Schema.define(:version => 20080610162722) do
 
   create_table "article_versions", :force => true do |t|
     t.integer  "article_id",     :limit => 11
@@ -51,12 +51,23 @@ ActiveRecord::Schema.define(:version => 20080609135851) do
     t.datetime "updated_at"
   end
 
+  create_table "component_versions", :force => true do |t|
+    t.integer  "component_id", :limit => 11
+    t.integer  "version",      :limit => 11
+    t.integer  "theme_id",     :limit => 11
+    t.string   "name"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "components", :force => true do |t|
     t.integer  "theme_id",   :limit => 11
     t.string   "name"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "version",    :limit => 11
   end
 
   create_table "config", :force => true do |t|
@@ -111,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20080609135851) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "system_name"
   end
 
   create_table "users", :force => true do |t|

@@ -13,9 +13,23 @@ module Tags
       tag 'sections:each' do |tag|
         ::Section.all.inject('') do |str, section|
           tag.locals.object = section
-          str << tag.render('link')
+          str << tag.expand
         end
       end
+      
+      # articles
+      tag('articles') { |tag| tag.expand }
+      tag 'articles:each' do |tag|
+        component = self.theme.has?('article_preview')
+        tag.locals.object.articles.published.inject('') do |str, article|
+          str << article.render(component)
+        end
+      end
+      
+      tag 'articles:size' do |tag|
+        tag.locals.object.articles.count
+      end
+      
       
       tag 'stylesheet' do |tag|
         %{<link href="#{stylesheet_path(tag.attr['file'])}" media="screen" rel="stylesheet" type="text/css" />}

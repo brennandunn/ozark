@@ -12,6 +12,11 @@ class Admin::ArticlesController < ApplicationController
     render :action => :index
   end
   
+  def sections
+    @sections = Section.all
+    render :action => :index
+  end
+  
   def new
     render :action => :edit
   end

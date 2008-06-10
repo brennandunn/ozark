@@ -1,0 +1,29 @@
+<% add_stylesheet 'sections' %>
+<h1><%= @section.name %></h1>
+<ul class="options">
+  <li><%= link_to 'Sections List', sections_path %></li>
+  <li><%= link_to 'Add Article', new_article_path %></li>
+  <li><%= link_to 'Add Page', new_page_path %></li>
+  <li><%= link_to 'Edit Section', edit_section_path(@section) %></li>
+</ul>
+
+
+<% div_for @section do %>
+  
+  <h2>
+    <%= @section.name %>
+    <span>mapped to <%= @section.route.display_permalink %></span>
+  </h2>
+    <% @section.children.each do |child| %>
+      <% div_for child do %>
+      <table class="summary">
+        <tr>
+          <td class="type"><span><%= status_of(child) %><%= child.class.to_s.downcase %></span></td>
+          <td class="title"><%= link_to child.name, child.is_a?(Article) ? edit_article_path(child) : edit_page_path(child) %></td>
+          <td class="slug"><%= child.route.display_slug %></td>
+          <td class="comments">&nbsp;<%= pluralize(child.comments.size, 'comment') if child.respond_to?(:comments) %></td>
+        </tr>  
+      </table>
+      <% end %>
+    <% end %>
+<% end %>

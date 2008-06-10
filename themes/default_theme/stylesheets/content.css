@@ -3,7 +3,7 @@
  --------------------------------------------------------------*/
 
 #header {
-  background: url("/images/header_shadow.gif") repeat-x left bottom;
+  background: url("/images/default_theme/header_shadow.gif") repeat-x left bottom;
 }
 
 #header a:link,
@@ -231,7 +231,7 @@
 #content li.comment .author div {
   margin: 0 0 0.5em 0.5em;
   width: 60px; height: 60px;
-  background: url("/images/gravatar.gif") no-repeat left top;
+  background: url("/images/default_theme/gravatar.gif") no-repeat left top;
   float: right; 
 }
 

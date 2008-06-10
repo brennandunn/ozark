@@ -1,5 +1,27 @@
-<% @themes.each do |theme| %>
-  <% div_for theme do %>
-    <%= theme.name %> - <%= theme.complete? %>
-  <% end %>
-<% end %>  
+<h1>Available Themes</h1>
+
+<div class="left col2 existing_themes">
+  
+  <h2>Existing Themes</h2>
+  <%= render :partial => Theme.all %>
+  
+  <hr/>
+  
+  <h2>
+    Available Local Themes
+    <p class="info">
+      found in <%= Theme::ThemesDir  %>
+    </p>
+  </h2>
+  <div id="import">
+  <%= render :partial => 'local_theme', :collection => Theme.available %>
+  </div>
+</div>
+
+<div class="left col2">
+  
+  <h3><%= link_to 'Create a theme from scratch' %></h3>
+  <!--
+  <h3><%= link_to 'Import an existing theme' %>
+  -->
+</div>

@@ -58,7 +58,7 @@ module Routeable
     private
     
     def infer_route!
-      if route.slug.blank?
+      if route.slug.blank? or @slug
         route.slug = @slug || self.name.to_slug
         route.save
       end

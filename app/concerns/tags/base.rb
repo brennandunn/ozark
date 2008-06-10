@@ -60,7 +60,7 @@ module Tags
       protected
       
       def stylesheet_path(name)
-        "/stylesheets/#{self.is_a?(Section) ? self.system_name : self.section.system_name}/#{name}.css"
+        "/stylesheets/#{self.theme.system_name}/#{name}.css"
       end
       
       def form_tag(uri, attributes = {}, &block)

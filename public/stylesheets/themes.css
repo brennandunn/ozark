@@ -1,0 +1,52 @@
+div.existing_themes {
+	width: 400px;
+}
+
+div.theme {
+	padding: 3px 5px;
+	border-bottom: 1px solid #ddd;
+}
+
+div.theme span {
+	float: right;
+	font-size: 13px;
+}
+
+hr {
+	border: none;
+	margin: 30px 0;
+}
+
+p.info {
+	font-size: 12px;
+	font-weight: normal;
+	color: #333;
+}
+
+.component_list {
+	width: 200px;
+}
+
+.component_list ul {
+	list-style: none;
+}
+
+.component_list ul li {
+	padding: 4px 0;
+	border-bottom: 1px solid #ddd;
+	font-weight: bold;
+}
+
+.component_list ul li a {
+	font-weight: normal;
+}
+
+.editor {
+	padding-right: 0;
+	width: 570px;
+}
+
+.editor textarea {
+	width: 100%;
+}
+

@@ -9,6 +9,7 @@ body {
 
 .left { float: left; }
 .clearfix { clear: both; }
+.align_right { text-align: right; }
 
 .col2 { width: 390px; padding: 0 15px; }
 
@@ -123,6 +124,10 @@ ul.options li {
 ul.options li a {
 	font-weight: normal;
 	color: #c98000;
+}
+
+ul.options li.feature a {
+	font-weight: bold;
 }
 
 div.exception {

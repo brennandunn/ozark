@@ -1,0 +1,34 @@
+<h1>Theme Editor</h1>
+<ul class="options">
+  <li><%= link_to 'Back to list', themes_path %></li>
+</ul>
+
+<div class="left col2 component_list">
+  <ul>
+  <% @theme.components.each do |component| %>
+    <li><%= link_to_unless component == @component, component.name.titleize, { :component => component.name } %></li>
+  <% end %>
+  <li>
+    <p class="info">
+      Create component
+    </p>  
+    <%= text_field_tag :new_component_name %> <%= submit_tag '&rarr;' %>
+  </li>  
+  </ul>
+</div>
+
+<div class="left col2 editor">
+  <% form_for @theme do |f| %>
+  
+    <% fields_for @component do |c| %>
+    <div>
+      <%= c.text_area :content %>
+    </div>
+    <% end %>
+    <%= hidden_field_tag :component_id, @component.id %>
+    <div class="align_right">
+      <%= submit_tag 'Save' %>
+    </div>
+    
+  <% end %>
+</div>

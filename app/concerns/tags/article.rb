@@ -17,7 +17,7 @@ module Tags
       end
       
       tag 'comments:size' do |tag|
-        self.comments.size
+        self.comments.count
       end
       
       tag('form') { |tag| tag.expand }

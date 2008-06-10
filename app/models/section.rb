@@ -20,12 +20,11 @@ class Section < ActiveRecord::Base
     @slug = str == '/' ? '' : str
   end
   
-  def children
-    (articles + pages).sort { |x, y| x.route.permalink <=> y.route.permalink }
-  end
-  
-  def system_name
-    name.underscore
+  def children(limit = nil)
+    found  = articles.find(:all, :limit => limit, :order => 'updated_at desc')
+    found += pages.find(:all, :limit => limit, :order => 'updated_at desc')
+    found.sort! { |x, y| y.updated_at <=> x.updated_at }
+    limit ? found[0, limit] : found
   end
   
   def process!
