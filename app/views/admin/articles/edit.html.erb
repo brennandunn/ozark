@@ -1,7 +1,10 @@
-<% add_stylesheet 'articles' %>
 <h1><%= header_for @article, 'article' %></h1>
 <ul class="options">
   <li><%= link_to 'Cancel', articles_path %></li>
+  <% unless @article.new_record? %>
+  <li><%= link_to 'Delete article', article_path(@article), 
+                  :method => :delete, :confirm => 'Are you sure you want to delete this article?' %></li>
+  <% end %>
 </ul>
 
 <% form_for @article, :html => { :class => 'model' } do |f| %>

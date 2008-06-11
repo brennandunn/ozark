@@ -5,7 +5,7 @@
 
   <% Route.sitemap.each do |route| %>
     <% div_for route do %>
-      <%= route.display_permalink %> <span>&rarr; <%= link_to route.associated.name, route.associated %></span>
+      <%= route.display_permalink %> <span>&rarr; <%= link_to route.associated.name, edit_polymorphic_path(route.associated) %></span>
     <% end %>
   <% end %>  
 </div>

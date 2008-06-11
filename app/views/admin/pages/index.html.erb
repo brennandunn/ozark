@@ -1,0 +1,10 @@
+<h1>Pages</h1>
+
+<ul class="options">
+  <li class="feature"><%= link_to 'New page', new_page_path %></li>
+  <li><%= link_to_unless_current 'All', pages_path %></li>
+  <li><%= link_to_unless_current 'By Section', sections_pages_path %></li>
+  <li><%= link_to_unless_current 'By Layout', layouts_pages_path %></li>
+</ul>
+
+<%= render :partial => action_name, :collection => @pages %>

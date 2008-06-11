@@ -2,6 +2,7 @@ class Admin::ArticlesController < ApplicationController
   
   before_filter :guarantee_sections, :except => [:index, :published]
   before_filter :get_or_build_article, :except => :index
+  before_filter { |c| c.send :add_stylesheet, 'articles' }
 
   def index
     @articles = Article.all
@@ -33,6 +34,11 @@ class Admin::ArticlesController < ApplicationController
   def update
     @article.attributes = params[:article]
     @article.save
+    redirect_to :action => :index
+  end
+  
+  def destroy
+    @article.destroy
     redirect_to :action => :index
   end
   

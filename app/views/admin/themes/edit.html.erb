@@ -1,6 +1,7 @@
 <h1>Theme Editor</h1>
 <ul class="options">
   <li><%= link_to 'Back to list', themes_path %></li>
+  <li>This theme is <%= @theme.complete? ? 'complete' : 'incomplete' %></li>
 </ul>
 
 <div class="left col2 component_list">
