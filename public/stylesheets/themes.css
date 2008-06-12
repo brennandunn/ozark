@@ -23,6 +23,11 @@ p.info {
 	color: #333;
 }
 
+p.info span {
+	padding: 0 10px;
+	color: #bbb;
+}
+
 .component_list {
 	width: 200px;
 }

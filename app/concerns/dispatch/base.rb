@@ -27,7 +27,7 @@ module Dispatch
     private
     
     def determine_resource_from_path
-      Routeable::recognize(@path)
+      Routeable::recognize(@path, @request)
     end
     
   end

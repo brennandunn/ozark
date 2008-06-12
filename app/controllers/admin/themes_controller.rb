@@ -2,6 +2,7 @@ class Admin::ThemesController < ApplicationController
   
   before_filter { |c| c.send :add_stylesheet, 'themes' }
   before_filter :get_or_build_theme, :except => :index
+  before_filter :determine_current_component, :only => [:edit, :destroy_component]
   
   def index
     @themes = Theme.paginate :page => params[:page]
@@ -11,7 +12,11 @@ class Admin::ThemesController < ApplicationController
   end
   
   def edit
-    determine_current_component
+  end
+  
+  def new_component
+    component = @theme.components.create :name => params[:new_component_name].downcase
+    redirect_to edit_theme_path(@theme, { :component => component.name })
   end
     
   def import_local
@@ -23,6 +28,11 @@ class Admin::ThemesController < ApplicationController
     component = @theme.components.find(params[:component_id])
     component.update_attribute :content, params[:component][:content]
     redirect_to :action => :edit, :component => component.name
+  end
+  
+  def destroy_component
+    @component.destroy
+    redirect_to :action => :edit
   end
   
   

@@ -4,15 +4,17 @@ module Routeable
     klass.send :include, InstanceMethods
     klass.class_eval do
       has_one :_route, :class_name => 'Route', :as => :associated, :dependent => :delete
-      after_save :infer_route!
+      before_validation :infer_route!
+      validates_associated :_route
+      attr_reader :request
     end
   end
   
-  def self.recognize(route_string)
+  def self.recognize(route_string, request)
     route_string = route[0...-1] if route_string.last == '/' and route_string.length > 1  # strip trailing slashes
     if route = Route.find_by_permalink(route_string)
       if route.redirect_to.blank?
-        route.associated unless route.associated.respond_to?(:published_at) and route.associated.published_at.nil?
+        route.associated.set_request(request) unless route.associated.respond_to?(:published_at) and route.associated.published_at.nil?
       else
         Redirect.new(route.redirect_to)
       end
@@ -52,6 +54,11 @@ module Routeable
     
     def route
       self._route || build__route
+    end
+    
+    def set_request(request)
+      @request = request
+      self
     end
     
     

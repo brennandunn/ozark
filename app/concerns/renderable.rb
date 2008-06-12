@@ -12,7 +12,7 @@ module Renderable
       initialize_parser_and_context
       return parse_object(component) if component
       raise IncompleteThemeError.new if self.theme.incomplete?
-      if found_component = self.theme.has?(self.class::Composition.first)
+      if found_component = determine_layout
         parse_object(found_component)
       else
         parse_object(self)
@@ -35,6 +35,10 @@ module Renderable
     
     def parse_object(object)
       @parser.parse(object.content)
+    end
+    
+    def determine_layout
+      (self.respond_to?(:component_id) and self.component_id) ? Component.find(self.component_id) : self.theme.has?(self.class::Composition.first)
     end
     
   end

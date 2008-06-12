@@ -142,8 +142,7 @@ div.exception .back {
 }
 
 form.model {
-	border-left: 16px solid #e1f6ff;
-	padding: 20px 0 20px 34px;
+	padding: 20px 0 20px 0;
 }
 
 form.model h4 {
@@ -164,4 +163,23 @@ form.model fieldset {
 form.model input {
 	padding: 1px 2px;
 	font-size: 19px;
+}
+
+div.content_editor, div.content_options {
+	padding: 0;
+}
+
+div.content_editor {
+	width: 600px;
+	padding-right: 20px;
+	border-right: 2px solid #ddd;
+	margin-right: 20px;
+}
+
+div.content_editor textarea {
+	width: 95%;
+}
+
+div.content_options {
+	width: 200px;
 }

@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem, ErrorHandling
   
   helper :all
-  protect_from_forgery
   filter_parameter_logging :password
   
   helper_method :stylesheets, :add_stylesheet
@@ -13,10 +12,6 @@ class ApplicationController < ActionController::Base
   
   
   protected
-  
-  def guarantee_sections
-    raise Section::NoSectionsError.new if Section.count.zero?
-  end
   
   def stylesheets
     ['base', *(@_stylesheets || [])]

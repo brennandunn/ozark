@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
       a.resources       :pages, :collection => { :sections => :get, :layouts => :get }
       a.resources       :sections
       a.with_options :path_prefix => 'admin/settings' do |s|
-        s.resources     :themes, :collection => { :import_local => :get }, :has_many => :components
+        s.resources     :themes, :collection => { :import_local => :get }, :member => { :new_component => :post, :destroy_component => :delete }
       end
       a.resource        :settings
       a.with_options :controller => 'dashboard' do |d|

@@ -1,9 +1,10 @@
 <h1>Theme Editor</h1>
 <ul class="options">
   <li><%= link_to 'Back to list', themes_path %></li>
-  <li>This theme is <%= @theme.complete? ? 'complete' : 'incomplete' %></li>
+  <li>'<%= @theme.name %>' is <%= @theme.complete? ? 'complete' : 'incomplete' %></li>
 </ul>
 
+<% form_tag new_component_theme_path(@theme) do %>
 <div class="left col2 component_list">
   <ul>
   <% @theme.components.each do |component| %>
@@ -17,6 +18,7 @@
   </li>  
   </ul>
 </div>
+<% end %>
 
 <div class="left col2 editor">
   <% form_for @theme do |f| %>
@@ -27,9 +29,12 @@
     </div>
     <% end %>
     <%= hidden_field_tag :component_id, @component.id %>
-    <div class="align_right">
+    <p class="align_right info">
+      <% unless @component.required? %>
+      <%= link_to 'Delete', destroy_component_theme_path(@theme, { :component => @component.name }), :method => :delete, :confirm => 'Are you sure you want to delete this theme? Doing so could screw up any page that uses it.' %> <span>|</span>
+      <% end %> 
       <%= submit_tag 'Save' %>
-    </div>
+    </p>
     
   <% end %>
 </div>

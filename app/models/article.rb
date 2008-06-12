@@ -12,6 +12,9 @@ class Article < ActiveRecord::Base
   named_scope :all, :order => 'updated_at desc', :include => :_route
   named_scope :published, :conditions => ['published_at is not null'], :order => 'updated_at desc', :include => :_route
     
+  validates_presence_of :name
+  validates_uniqueness_of :name  
+    
   def published?
     not published_at.nil?
   end
@@ -30,6 +33,9 @@ class Article < ActiveRecord::Base
   end
   
   def process!
+    if request.post?
+      comments.create request.parameters[:comment]
+    end
     component = theme.has?('article')
     self.render(component)
   end

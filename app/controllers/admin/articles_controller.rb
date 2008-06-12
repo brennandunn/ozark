@@ -27,16 +27,13 @@ class Admin::ArticlesController < ApplicationController
   
   def create
     @article.attributes = params[:article]
-    @article.save
+    @article.save!
     redirect_to :action => :index
+  rescue ActiveRecord::RecordInvalid
+    render :action => :edit
   end
-  
-  def update
-    @article.attributes = params[:article]
-    @article.save
-    redirect_to :action => :index
-  end
-  
+  alias :update :create
+
   def destroy
     @article.destroy
     redirect_to :action => :index
@@ -45,7 +42,7 @@ class Admin::ArticlesController < ApplicationController
   private
   
   def get_or_build_article
-    @article = params[:id] ? Article.find(params[:id]) : Article.new
+    @article = params[:id] ? Article.find(params[:id]) : Article.new(:published_at => Time.now)
   end
 
 end

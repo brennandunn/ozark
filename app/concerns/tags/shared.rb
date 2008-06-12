@@ -30,6 +30,19 @@ module Tags
         tag.locals.object.articles.count
       end
       
+      # pages
+      tag('pages') { |tag| tag.expand }
+      tag 'pages:each' do |tag|
+        tag.locals.section.pages.map do |page|
+          tag.locals.object = page
+          tag.expand
+        end.join("\n")
+      end
+      
+      # cursor
+      tag 'cursor' do |tag|
+        tag.globals.cache[:comments]
+      end
       
       tag 'stylesheet' do |tag|
         %{<link href="#{stylesheet_path(tag.attr['file'])}" media="screen" rel="stylesheet" type="text/css" />}

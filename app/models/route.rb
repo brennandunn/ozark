@@ -2,7 +2,10 @@ class Route < ActiveRecord::Base
 
   belongs_to :associated, :polymorphic => true
   
-  before_save :compile_permalink
+  before_validation :compile_permalink
+  
+  validates_uniqueness_of :permalink
+  #validates_exclusion_of :permalink
   
   attr_accessor :ignore_compile
   

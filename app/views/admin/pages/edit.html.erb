@@ -1,1 +1,58 @@
 <h1><%= header_for @page, 'page' %></h1>
+
+<ul class="options">
+  <li><%= link_to 'Cancel', pages_path %></li>
+  <% unless @page.new_record? %>
+  <li><%= link_to 'Delete page', article_path(@page), 
+                  :method => :delete, :confirm => 'Are you sure you want to delete this page?' %></li>
+  <% end %>
+</ul>
+
+<% form_for @page, :html => { :class => 'model' } do |f| %>
+  
+  <div class="left col2 content_editor">
+    
+    <h4>Name</h4>
+    <fieldset>
+      <%= f.text_field :name, :size => 40 %>
+    </fieldset>   
+
+    <div>
+    <%= f.text_area :content %>
+    </div>
+    <br/>
+
+    <h4>Slug</h4>
+    <fieldset>
+      <%= f.text_field :slug, :size => 25 %>
+    </fieldset>
+    
+    <%= submit_tag 'Save' %>
+    
+    
+  </div>
+  
+  <div class="left col2 content_options">
+    
+    <h4>Section</h4>
+    <fieldset>
+      <%= f.select :section_id, Section.all.map { |s| [ s.name, s.id ] }, {}, :onchange => 'Page.switch_section(this.value)' %>
+    </fieldset>  
+    
+    <h4>Layout (optional)</h4>
+    <p>Will inherit from section if not set</p>
+    <fieldset>
+      <%= collection_select(:page, :component_id, (@page.section_id.nil? ? Section.first : @page.section).theme.valid_layouts, 
+                                :id, :name, 
+                                { :include_blank => true }, :id => 'select_layout') %>
+    </fieldset>
+    
+  </div>
+  
+<% end %>
+
+<div class="clearfix">&nbsp;</div>
+
+<% javascript_tag do %>
+  var sections = [<%= theme_json %>];
+<% end %>

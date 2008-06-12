@@ -1,6 +1,8 @@
 class Admin::PagesController < ApplicationController
   
+  before_filter :guarantee_sections, :except => [:index, :published]
   before_filter :get_or_build_page, :except => :index
+  before_filter { |c| c.send :add_stylesheet, 'articles' }
   before_filter { |c| c.send :add_stylesheet, 'pages' }
   
   def index
@@ -18,6 +20,13 @@ class Admin::PagesController < ApplicationController
   def new
     render :action => :edit
   end
+  
+  def create
+    @page.attributes = params[:page]
+    @page.save
+    redirect_to :action => :index
+  end
+  alias :update :create
   
   
   protected

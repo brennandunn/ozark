@@ -7,10 +7,18 @@ module ErrorHandling
   
   protected
   
+  # check cases
+  
+  def guarantee_sections
+    raise Section::NoSectionsError.new if Section.count.zero?
+  end
+  
+  # rescue action
+  
   def rescuer(exception)
     render :template => "errors/#{exception.name}"
   end
-  
+    
 end
 
 class OzarkError < StandardError

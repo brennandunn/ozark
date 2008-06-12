@@ -62,6 +62,9 @@ class Theme < ActiveRecord::Base
     self.class.system_path(self.system_name)
   end
   
+  def valid_layouts
+    components.reject { |c| RequiredComponents.from(1).include?(c.name) }.sort_by(&:name)
+  end
   
   private
   

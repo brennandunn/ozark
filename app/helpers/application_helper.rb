@@ -10,12 +10,22 @@ module ApplicationHelper
   def status_of(object)
     if object.respond_to?(:published?)
       object.published? ? '' : 'unpublished'
+    else
+      ''
     end + ' '
   end
   
   def web_path(object)
     permalink = object.route.display_permalink
-    object.respond_to?(:published?) and !object.published? ? permalink : link_to(permalink, permalink)
+    (object.respond_to?(:published?) and !object.published?) ? permalink : link_to(permalink, permalink)
+  end
+  
+  def errors_for(*objects)
+    output = objects.map do |o|
+      o.errors.map do |attr, msg|
+        content_tag(:li, "#{attr.titleize} #{msg}")
+      end.join("\n")
+    end.join("\n")
   end
 
 end

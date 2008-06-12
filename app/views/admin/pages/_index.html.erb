@@ -1,0 +1,11 @@
+<% page = index %>
+<% div_for page do %>
+  <h3>
+    <%= link_to page.name, edit_page_path(page) %>
+    <span>created <%= relative_date page.created_at %></span> 
+  </h3>
+  <p class="meta">
+    Filed under <%= link_to page.section.name, page.section %> <span class="space">|</span> 
+    accessible via <%= web_path(page) %>
+  </p>  
+<% end %>

@@ -7,33 +7,46 @@
   <% end %>
 </ul>
 
+<%= errors_for @article.route, @article %>
+
 <% form_for @article, :html => { :class => 'model' } do |f| %>
   
-  <h4>Name</h4>
-  <fieldset>
-    <%= f.text_field :name, :size => 40 %>
-  </fieldset>  
-  
-  <h4>Slug</h4>
-  <fieldset>
-    <%= f.text_field :slug, :size => 25 %>
-  </fieldset>  
+  <div class="left col2 content_editor">
     
-  <div class="content">
-  <%= f.text_area :content, :size => '102x40' %>
+    <h4>Name</h4>
+    <fieldset>
+      <%= f.text_field :name, :size => 40 %>
+    </fieldset>   
+
+    <div>
+    <%= f.text_area :content %>
+    </div>
+    <br/>
+
+    <h4>Slug</h4>
+    <fieldset>
+      <%= f.text_field :slug, :size => 25 %>
+    </fieldset>
+    
+    <%= submit_tag 'Save' %>
+    
+    
   </div>
-  <br/>
   
-  <h4>Section</h4>
-  <fieldset>
-    <%= f.select :section_id, Section.all.map { |s| [ s.name, s.id ] } %>
-  </fieldset>  
-  
-  <h4>Published?</h4>
-  <fieldset>  
-    <%= f.check_box :published %>
-  </fieldset>  
+  <div class="left col2 content_options">
     
-  <%= submit_tag 'Save' %>
+    <h4>Section</h4>
+    <fieldset>
+      <%= f.select :section_id, Section.all.map { |s| [ s.name, s.id ] } %>
+    </fieldset>  
+
+    <h4>Published?</h4>
+    <fieldset>  
+      <%= f.check_box :published %>
+    </fieldset>
+    
+    <%= link_to 'Delete article', @article, :method => :delete, :confirm => 'Are you sure you want to delete this article?' %>
+    
+  </div>
   
 <% end %>
