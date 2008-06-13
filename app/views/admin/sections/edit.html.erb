@@ -18,7 +18,8 @@
     once a slug is defined it shouldn't be changed. This would adversely affect child pages permalinks.
   </p>
   <fieldset>
-    <%= f.text_field :slug, :size => 25 %>
+    <%= f.text_field :slug, :size => 25 %> 
+    <%= f.check_box :root %> Capture root level requests
   </fieldset> 
   <% end %>
   

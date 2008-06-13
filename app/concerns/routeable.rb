@@ -12,7 +12,7 @@ module Routeable
   
   def self.recognize(route_string, request)
     route_string = route[0...-1] if route_string.last == '/' and route_string.length > 1  # strip trailing slashes
-    if route = Route.find_by_permalink(route_string)
+    if route = Route.find_by_permalink_and_active(route_string, true)
       if route.redirect_to.blank?
         route.associated.set_request(request) unless route.associated.respond_to?(:published_at) and route.associated.published_at.nil?
       else

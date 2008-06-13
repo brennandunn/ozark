@@ -108,11 +108,13 @@ ActiveRecord::Schema.define(:version => 20080610162722) do
     t.string  "slug"
     t.text    "permalink"
     t.text    "redirect_to"
+    t.boolean "active",                        :default => true
   end
 
   create_table "sections", :force => true do |t|
     t.integer  "theme_id",   :limit => 11
     t.string   "name"
+    t.boolean  "root",                     :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

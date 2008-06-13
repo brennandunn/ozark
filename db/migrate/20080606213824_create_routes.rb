@@ -6,6 +6,7 @@ class CreateRoutes < ActiveRecord::Migration
       t.string        :slug
       t.text          :permalink
       t.text          :redirect_to
+      t.boolean       :active, :default => true
     end
   end
 

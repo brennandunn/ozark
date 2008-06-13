@@ -4,7 +4,7 @@ class Route < ActiveRecord::Base
   
   before_validation :compile_permalink
   
-  validates_uniqueness_of :permalink
+  validates_uniqueness_of :permalink, :scope => :active
   #validates_exclusion_of :permalink
   
   attr_accessor :ignore_compile
