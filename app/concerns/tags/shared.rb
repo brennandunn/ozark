@@ -5,7 +5,9 @@ module Tags
       include ::Tags::Taggable      
 
       tag 'link' do |tag|
-        %{<a href="/#{tag.locals.object.uri}">#{tag.locals.object.name}</a>}
+        uri = determine_uri_handler(tag)
+        content = tag.double? ? tag.expand : tag.locals.object.name
+        uri.blank? ? content : %{<a href="#{uri}">#{content}</a>}
       end
       
       # sections
@@ -27,7 +29,7 @@ module Tags
       end
       
       tag 'articles:size' do |tag|
-        tag.locals.object.articles.count
+        tag.locals.object.articles.published.count
       end
       
       # pages
@@ -46,6 +48,21 @@ module Tags
       
       tag 'stylesheet' do |tag|
         %{<link href="#{stylesheet_path(tag.attr['file'])}" media="screen" rel="stylesheet" type="text/css" />}
+      end
+      
+      
+      private
+      
+      def determine_uri_handler(tag)
+        if tag.attr['on']
+          response = tag.locals.object.send(tag.attr['on'].intern)
+          return  case response
+                  when '' : ''
+                  when Format::EMAIL : "mailto:#{response}"
+                  else response
+                  end
+        end
+        '/' + tag.locals.object.uri
       end
       
     end

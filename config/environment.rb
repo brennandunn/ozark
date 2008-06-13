@@ -32,7 +32,7 @@ Rails::Initializer.run do |config|
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
   # Add additional load paths for your own custom dirs
-  config.load_paths += %W( #{RAILS_ROOT}/app/concerns )
+  config.load_paths += %W( #{RAILS_ROOT}/app/concerns #{RAILS_ROOT}/app/observers )
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
@@ -52,6 +52,8 @@ Rails::Initializer.run do |config|
     :secret      => 'b825a075ec8c2abe554488b0719e641416fc2482d092377190d720632af932e21d4db6c69660052276c40550aa2295c9d49293ad67a97b776622884ed7c2ab21'
   }
 
+  config.action_controller.page_cache_directory = "#{RAILS_ROOT}/tmp/cache/ozark"
+
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with "rake db:sessions:create")
@@ -63,7 +65,7 @@ Rails::Initializer.run do |config|
   # config.active_record.schema_format = :sql
 
   # Activate observers that should always be running
-  # config.active_record.observers = :cacher, :garbage_collector
+  config.active_record.observers = :page_observer, :article_observer, :comment_observer
 end
 
 require 'core_extensions'

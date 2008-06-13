@@ -1,7 +1,7 @@
 class RenderController < ApplicationController
-  
+  session :off
   layout nil
-  
+    
   def dispatch
     @dispatch = Dispatch::Base.new(path, request, response)
     @dispatch.error? ? show_404 : send("handle_#{@dispatch.action}")

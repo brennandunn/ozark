@@ -1,5 +1,7 @@
 module Dispatch
   class Base
+    include Cache
+    
     attr_reader :found
     
     def initialize(path, request, response)
@@ -12,11 +14,14 @@ module Dispatch
     end
     
     def render
-      @response.body = if @found.respond_to?(:render)
-                        @found.current.render
-                      else
-                        ''
-                      end
+      unless serve_from_cache
+        @response.body = if @found.respond_to?(:render)
+                          @found.current.render
+                        else
+                          ''
+                        end
+        cache_response unless @found.skip_caching?  
+      end              
     end
     
     def error?

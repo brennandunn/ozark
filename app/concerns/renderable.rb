@@ -2,6 +2,9 @@ module Renderable
   
   def self.included(klass)
     klass.send :include, InstanceMethods
+    klass.class_eval do
+      attr_accessor :skip_caching
+    end
   end
   
   class IncompleteThemeError < StandardError ; end
@@ -17,6 +20,10 @@ module Renderable
       else
         parse_object(self)
       end
+    end
+    
+    def skip_caching?
+      self.skip_caching
     end
     
     # default catch-all
