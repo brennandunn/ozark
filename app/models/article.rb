@@ -26,17 +26,12 @@ class Article < ActiveRecord::Base
   end
   
   def published=(str)
-    case str
-    when '0'
-      self.published_at = nil
-    when '1'
-      self.published_at = Time.now
-    end
+    self.published_at = str.to_i.zero? ? nil : Time.now
   end
   
   def process!
     if request.post?
-      self.new_comment = Comment.create(request.parameters[:comment].merge( { :ip_address => request.remote_ip } ))
+      self.new_comment = Comment.new(request.parameters[:comment].merge( { :ip_address => request.remote_ip } ))
       comments << new_comment if new_comment.valid?
     end
     component = theme.has?('article')
