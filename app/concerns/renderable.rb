@@ -1,6 +1,7 @@
 module Renderable
   
   def self.included(klass)
+    klass.send :include, Dispatch::Cache
     klass.send :include, InstanceMethods
     klass.class_eval do
       attr_accessor :skip_caching
@@ -30,6 +31,12 @@ module Renderable
     def current
       self
     end
+    
+    # ensures this callback is executed last
+    def after_save
+      cache.expire_response(route.permalink) if self.respond_to?(:route)
+    end
+    
     
     private
     

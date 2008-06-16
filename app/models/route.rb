@@ -2,10 +2,9 @@ class Route < ActiveRecord::Base
 
   belongs_to :associated, :polymorphic => true
   
-  before_validation :compile_permalink
+  before_save :compile_permalink
   
-  validates_uniqueness_of :permalink, :scope => :active
-  #validates_exclusion_of :permalink
+  #validates_uniqueness_of :permalink, :scope => :active
   
   attr_accessor :ignore_compile
   
@@ -19,7 +18,9 @@ class Route < ActiveRecord::Base
     end
     
     def sitemap
-      attached.find(:all, :order => 'permalink asc', :include => :associated)
+      attached.find(:all, :order => 'permalink asc', :include => :associated).reject do |r|
+        (r.associated.respond_to?(:root) && !r.associated.root) ? true : false
+      end
     end
     
   end

@@ -14,6 +14,17 @@ class Admin::ThemesController < ApplicationController
   def edit
   end
   
+  def create
+    @theme.attributes = params[:theme]
+    @theme.save!
+    Theme::RequiredComponents.each do |component|
+      @theme.components.create :name => component
+    end
+    redirect_to :action => :index
+  rescue ActiveRecord::RecordInvalid
+    render :action => :edit
+  end
+  
   def new_component
     component = @theme.components.create :name => params[:new_component_name].downcase
     redirect_to edit_theme_path(@theme, { :component => component.name })

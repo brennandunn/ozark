@@ -15,6 +15,8 @@ class Theme < ActiveRecord::Base
     end
   end
   
+  validates_uniqueness_of :name
+  
   attr_accessor :location
   
   after_create :import

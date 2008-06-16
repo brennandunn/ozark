@@ -24,6 +24,13 @@ The goal of Ozark is to create a simple and sleek blog application that's meant 
 * A robust, but non-bloated, tag set
 
 
+=== TODO
+
+Some things I plan on knocking out, in no particular order.
+
+* Pagination. Hopefully I don't write > 10 posts on my production deployment before getting this in place.
+
+
 === License
 
 Copyright (c) 2008 Brennan Dunn, http://www.brennandunn.com/

@@ -46,6 +46,11 @@ module Tags
         text_area_tag 'comment[content]', nil, tag.attr
       end
       
+      tag 'input:error' do |tag|
+        return unless self.new_comment or tag.attr['on'].blank?
+        self.new_comment.errors.on(tag.attr['on'].intern)
+      end
+      
     end
 
     def self.included(receiver)

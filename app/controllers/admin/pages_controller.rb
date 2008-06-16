@@ -10,7 +10,8 @@ class Admin::PagesController < ApplicationController
   end
   
   def sections
-    
+    @pages = Section.all
+    render :action => :index
   end
   
   def layouts

@@ -7,6 +7,7 @@ class CreateComments < ActiveRecord::Migration
       t.string            :email
       t.string            :website
       t.text              :content
+      t.string            :ip_address
       t.timestamps
     end
   end

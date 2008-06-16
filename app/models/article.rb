@@ -13,7 +13,9 @@ class Article < ActiveRecord::Base
   named_scope :published, :conditions => ['published_at is not null'], :order => 'updated_at desc', :include => :_route
     
   validates_presence_of :name
-  validates_uniqueness_of :name  
+  validates_uniqueness_of :name
+  
+  attr_accessor :new_comment
     
   def published?
     not published_at.nil?
@@ -34,7 +36,8 @@ class Article < ActiveRecord::Base
   
   def process!
     if request.post?
-      comments.create request.parameters[:comment]
+      self.new_comment = Comment.create(request.parameters[:comment].merge( { :ip_address => request.remote_ip } ))
+      comments << new_comment if new_comment.valid?
     end
     component = theme.has?('article')
     self.render(component)

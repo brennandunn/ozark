@@ -11,6 +11,8 @@ class Section < ActiveRecord::Base
   
   has_many :articles, :order => 'created_at desc', :include => :_route
   has_many :pages, :include => :_route
+  
+  named_scope :root, :conditions => { :root => true }
     
   def slug
     @slug || self.route.slug.blank? ? '/' : self.route.slug || '/'

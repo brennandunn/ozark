@@ -37,7 +37,7 @@
     
     <h4>Section</h4>
     <fieldset>
-      <%= f.select :section_id, Section.all.map { |s| [ s.name, s.id ] } %>
+      <%= f.select :section_id, Section.root.map { |s| [ s.name, s.id ] } %>
     </fieldset>  
 
     <h4>Published?</h4>

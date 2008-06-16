@@ -6,7 +6,7 @@ module Dispatch
       :directory => ActionController::Base.page_cache_directory,
       :expire_time => 1.minute, # 1 draw every minute - mainly for time_ago_in_words, can adjust accordingly
       :default_extension => '.yml',
-      :perform_caching => false,
+      :perform_caching => true,
       :logger => ActionController::Base.logger,
       :use_x_sendfile => false
     }

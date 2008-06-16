@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20080610162722) do
     t.string   "email"
     t.string   "website"
     t.text     "content"
+    t.string   "ip_address"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20080610162722) do
     t.text    "permalink"
     t.text    "redirect_to"
     t.boolean "active",                        :default => true
+    t.integer "level",           :limit => 11
   end
 
   create_table "sections", :force => true do |t|

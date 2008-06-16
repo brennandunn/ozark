@@ -15,5 +15,5 @@ test:
   <<: *development
 
 production:
-  database: ozark_development
+  database: ozark_production
   <<: *development

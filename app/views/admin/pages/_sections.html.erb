@@ -1,0 +1,10 @@
+<% div_for sections do %>
+  <h2><%= sections.name %> 
+    <% if sections.articles.count > 3 %>
+    <span><a href="#">Expand all <%= sections.articles.count %> &rarr;</a></span>
+    <% end %>
+  </h2>
+  <div class="sections_offset">
+    <%= render :partial => sections.pages.find(:all, :limit => 3) %>
+  </div>
+<% end %>

@@ -1,13 +1,6 @@
 class String
-  def to_slug!
-    self.gsub!(/\W+/, ' ') # all non-word chars to spaces
-    self.strip!            # ohh la la
-    self.downcase!         #
-    self.gsub!(/\ +/, '-') # spaces to dashes, preferred separator char everywhere      
-  end
-  
   def to_slug
-    self.dup.to_slug!
+    self.gsub(/\W+/, ' ').strip.downcase.gsub(/\ +/, '-')
   end
   
 end

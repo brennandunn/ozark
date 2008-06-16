@@ -1,0 +1,17 @@
+<h1>Create New Theme</h1>
+<ul class="options">
+  <li><%= link_to 'Cancel', themes_path %></li>
+</ul>
+
+<%= errors_for @theme %>
+
+<% form_for @theme, :html => { :class => 'model' } do |f| %>
+  
+  <h4>Name</h4>
+  <fieldset>
+    <%= f.text_field :name, :size => 40 %>
+  </fieldset>
+  
+  <%= submit_tag 'Save' %>
+  
+<% end %>  

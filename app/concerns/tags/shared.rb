@@ -13,7 +13,7 @@ module Tags
       # sections
       tag('sections') { |tag| tag.expand }
       tag 'sections:each' do |tag|
-        ::Section.all.inject('') do |str, section|
+        ::Section.root.inject('') do |str, section|
           tag.locals.object = section
           str << tag.expand
         end
