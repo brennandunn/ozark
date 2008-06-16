@@ -1,16 +1,16 @@
-<h1>Log In</h1>
+<h1>Sign in</h1>
 
-<% form_tag session_path do -%>
+<% form_tag session_path, :class => 'model' do -%>
 <p><label for="login">Login</label><br/>
 <%= text_field_tag 'login', @login %></p>
-
+<br/>
 <p><label for="password">Password</label><br/>
 <%= password_field_tag 'password', nil %></p>
-
-<!-- Uncomment this if you want this functionality
-<p><label for="remember_me">Remember me:</label>
-<%= check_box_tag 'remember_me', '1', @remember_me %></p>
--->
-
-<p><%= submit_tag 'Log in' %></p>
+<br/>
+<p>
+  <%= submit_tag '&rarr;' %> 
+  &nbsp;&nbsp;
+  <label for="remember_me">Remember me:</label>
+  <%= check_box_tag 'remember_me', '1', @remember_me %>
+</p>
 <% end -%>

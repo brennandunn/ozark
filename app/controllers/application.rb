@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   
   helper_method :stylesheets, :add_stylesheet
   
+  before_filter :login_required
+  
   def assistant
     @_assistant ||= AssistantProxy.new(self)
   end

@@ -1,6 +1,10 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+  def when_logged_in(&block)
+    yield if block_given? and logged_in?
+  end
+
   def header_for(object, type = nil)
     str  = object.new_record? ? 'New' : 'Edit'
     str += " #{type}" if type

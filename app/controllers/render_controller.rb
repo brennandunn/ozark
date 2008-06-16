@@ -1,6 +1,8 @@
 class RenderController < ApplicationController
   session :off
   layout nil
+  
+  skip_before_filter :login_required
     
   def dispatch
     @dispatch = Dispatch::Base.new(path, request, response)

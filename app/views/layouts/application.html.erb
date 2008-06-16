@@ -12,16 +12,19 @@
 
 <body>
   
+  <% when_logged_in do %>
   <div id="bar">
     <div class="inset">
-      <%= link_to 'Preview', '/' %> <span>|</span> <%= link_to 'Logout' %>
+      <%= link_to 'Preview', '/', :popup => true %> <span>|</span> <%= link_to 'Logout', session_path, :method => :delete %>
     </div>
   </div>
+  <% end %>
   
   <div id="wrapper">
 
     <div id="mast">
       <p><%= link_to 'Ozark', dashboard_path %></p>
+      <% when_logged_in do %>
       <ul>
         <li><%= link_to 'Articles', articles_path %></li>
         <li><%= link_to 'Pages', pages_path %></li>
@@ -29,6 +32,7 @@
         <li><%= link_to 'Themes', themes_path %></li>
         <li><%= link_to 'Settings', settings_path %></li>
       </ul>  
+      <% end %>
       <div class="clearfix"></div>
     </div>  
 

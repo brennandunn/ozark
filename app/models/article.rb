@@ -31,8 +31,9 @@ class Article < ActiveRecord::Base
   
   def process!
     if request.post?
-      self.new_comment = Comment.new(request.parameters[:comment].merge( { :ip_address => request.remote_ip } ))
-      comments << new_comment if new_comment.valid?
+      self.new_comment = Comment.new(request.parameters[:comment].merge( {  :ip_address => request.remote_ip, 
+                                                                            :user_agent => request.env['HTTP_USER_AGENT'] } ))
+      comments << new_comment if new_comment.valid? and !new_comment.spam?
     end
     component = theme.has?('article')
     self.render(component)

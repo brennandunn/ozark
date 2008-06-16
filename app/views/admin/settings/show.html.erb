@@ -11,6 +11,11 @@
   <fieldset>
     <%= text_field_tag 'config[site][subtitle]', Configurator[:site, :subtitle] %>
   </fieldset>
+  
+  <h4>Akismet API Key</h4>
+  <fieldset>
+    <%= text_field_tag 'config[akismet_key]', Configurator[:akismet_key] %>
+  </fieldset>
 
   <%= submit_tag 'Save' %>
 <% end %>  

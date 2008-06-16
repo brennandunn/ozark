@@ -4,8 +4,8 @@ class AssistantProxy
     @reference = reference
   end
   
-  def resource(type, theme, query_path)
-    @type, @theme, @query_path = type, theme, query_path
+  def resource(params)
+    @type, @theme, @query_path = params[:type], params[:theme], [params[:path], params[:ext]] * '.'
     if resource = file_exists_in_theme
       resource
     else

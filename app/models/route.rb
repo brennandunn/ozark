@@ -4,7 +4,8 @@ class Route < ActiveRecord::Base
   
   before_save :compile_permalink
   
-  #validates_uniqueness_of :permalink, :scope => :active
+  validates_uniqueness_of :permalink, :scope => :active
+  validates_non_format_of :permalink, :with => /^admin/i
   
   attr_accessor :ignore_compile
   
