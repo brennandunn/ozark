@@ -52,7 +52,7 @@ Rails::Initializer.run do |config|
     :secret      => 'b825a075ec8c2abe554488b0719e641416fc2482d092377190d720632af932e21d4db6c69660052276c40550aa2295c9d49293ad67a97b776622884ed7c2ab21'
   }
 
-  config.action_controller.page_cache_directory = "#{RAILS_ROOT}/tmp/cache/ozark"
+  config.action_controller.page_cache_directory = "#{RAILS_ROOT}/tmp/cache"
 
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
