@@ -46,6 +46,13 @@ module Tags
         tag.globals.cache[:comments]
       end
       
+      # display
+      tag 'code' do |tag|
+        return if tag.single?
+        code = tag.expand.gsub(/^\s+\n/, '')
+        CodeRay.scan(code, :ruby).html( :wrap => :div )
+      end
+      
       tag 'stylesheet' do |tag|
         %{<link href="#{stylesheet_path(tag.attr['file'])}" media="screen" rel="stylesheet" type="text/css" />}
       end

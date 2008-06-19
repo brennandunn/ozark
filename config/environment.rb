@@ -22,7 +22,7 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on. 
   # They can then be installed with "rake gems:install" on new installations.
-  # config.gem "bj"
+  config.gem "coderay", :source => 'http://rd.cycnus.de/coderay/'
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "aws-s3", :lib => "aws/s3"
 
@@ -70,3 +70,4 @@ end
 
 require 'core_extensions'
 require 'resource_extensions'
+require 'coderay'

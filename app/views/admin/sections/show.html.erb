@@ -5,6 +5,7 @@
   <li><%= link_to 'Add Article', new_article_path %></li>
   <li><%= link_to 'Add Page', new_page_path %></li>
   <li><%= link_to 'Edit Section', edit_section_path(@section) %></li>
+  <li><%= link_to 'Delete Section', @section, :method => :delete, :confirm => 'Are you sure you want to delete this section?' %></li>
 </ul>
 
 

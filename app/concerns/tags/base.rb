@@ -8,6 +8,7 @@ module Tags
       include ::Tags::Taggable
       include ActionView::Helpers::DateHelper     
       include ActionView::Helpers::TagHelper 
+      include ActionView::Helpers::TextHelper
 
       tag 'render' do |tag|
         if component = tag.attr['component']
@@ -30,10 +31,22 @@ module Tags
         tag.expand if clean
       end
       
+      # pluralize
+      tag 'pluralize' do |tag|
+        number = tag.expand.to_i
+        pluralize(number, tag.attr['word'] || 'item')
+      end
+      
       # string columns
       [:id, :name, :content].each do |method|
         tag(method.to_s) do |tag|
-          self.send(method)
+          output = parse_object(self.send(method))
+          case tag.attr['format']
+          when /simple/i
+            simple_format(output)
+          else
+            output
+          end
         end
       end
       

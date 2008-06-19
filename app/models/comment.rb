@@ -1,7 +1,7 @@
 require 'uri'
 class Comment < ActiveRecord::Base
   include Renderable
-  include Tags::Base, Tags::Shared
+  include Tags::Base, Tags::Shared, Tags::Comment
   
   belongs_to :article
     
@@ -26,6 +26,10 @@ class Comment < ActiveRecord::Base
     end
   end
   alias_method_chain :spam?, :key_defined
+  
+  def gravatar_url
+    "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}?s=60"
+  end
   
   private
   

@@ -9,8 +9,8 @@ class Section < ActiveRecord::Base
   belongs_to :section
   belongs_to :theme
   
-  has_many :articles, :order => 'created_at desc', :include => :_route
-  has_many :pages, :include => :_route
+  has_many :articles, :order => 'created_at desc', :include => :_route, :dependent => :destroy
+  has_many :pages, :include => :_route, :dependent => :destroy
   
   named_scope :root, :conditions => { :root => true }
     
@@ -39,7 +39,7 @@ class Section < ActiveRecord::Base
     
   def infer_route_with_root!
     route.active = false unless root?
-    infer_route_without_root!
+    infer_route_without_root! if new_record?
   end
   alias_method_chain :infer_route!, :root
   

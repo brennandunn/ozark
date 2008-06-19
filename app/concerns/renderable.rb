@@ -48,7 +48,7 @@ module Renderable
     end
     
     def parse_object(object)
-      @parser.parse(object.content)
+      @parser.parse(object.respond_to?(:content) ? object.content : object)
     end
     
     def determine_layout

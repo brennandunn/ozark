@@ -22,7 +22,12 @@ class Admin::SectionsController < ApplicationController
     @section.save
     redirect_to :action => :index
   end
+  alias :update :create
   
+  def destroy
+    @section.destroy
+    redirect_to :action => :index
+  end
   
   private
   

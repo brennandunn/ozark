@@ -4,6 +4,7 @@ module Tags
     module InstanceMethods
       include ::Tags::Taggable
       include ActionView::Helpers::FormTagHelper
+      include WhiteListHelper
 
       tag 'author' do |tag|
         'Brennan Dunn'
@@ -16,7 +17,7 @@ module Tags
           component = self.theme.has?('comment')
           tag.locals.object.comments.map_with_index do |comment, idx|
             tag.globals.cache[:comments] = idx + 1
-            comment.render(component)
+            white_list(comment.render(component))
           end.join("\n")
         ensure
           tag.globals.cache.delete(:comments)
