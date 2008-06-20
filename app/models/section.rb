@@ -13,6 +13,17 @@ class Section < ActiveRecord::Base
   has_many :pages, :include => :_route, :dependent => :destroy
   
   named_scope :root, :conditions => { :root => true }
+  
+  after_save :expire_atom
+    
+  class << self
+    
+    def determine_from_path(path)
+      path =~ /feed\/(.*?)\.atom/
+      find_by_name($1)
+    end
+    
+  end  
     
   def slug
     @slug || self.route.slug.blank? ? '/' : self.route.slug || '/'
@@ -43,5 +54,8 @@ class Section < ActiveRecord::Base
   end
   alias_method_chain :infer_route!, :root
   
+  def expire_atom
+    cache.expire_response('feed/'+self.name.underscore+'.atom')
+  end
   
 end

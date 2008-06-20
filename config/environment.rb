@@ -71,3 +71,4 @@ end
 require 'core_extensions'
 require 'resource_extensions'
 require 'coderay'
+require 'atom'

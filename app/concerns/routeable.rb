@@ -11,7 +11,9 @@ module Routeable
   
   def self.recognize(route_string, request = nil)
     route_string = route[0...-1] if route_string.last == '/' and route_string.length > 1  # strip trailing slashes
-    if route = Route.find_by_permalink_and_active(route_string, true)
+    if route_string.ends_with?('.atom')
+      Atom.new(route_string, request)
+    elsif route = Route.find_by_permalink_and_active(route_string, true)
       if route.redirect_to.blank?
         unless route.associated.respond_to?(:published_at) and route.associated.published_at.nil?
           if request
@@ -35,6 +37,45 @@ module Routeable
     
     def dispatch_type
       :redirect
+    end
+    
+  end
+  
+  class Atom
+    
+    def initialize(path, request = nil)
+      @section, @request = Section.determine_from_path(path), request
+    end
+    
+    def dispatch_type
+      :atom
+    end
+    
+    def skip_caching?
+      false
+    end
+    
+    def render
+      return unless @section
+      ::Atom::Feed.new do |feed|
+        feed.title      = @section.name
+        feed.id         = UUID.new(:urn)
+        feed.updated    = Time.now
+        feed.entries    = @section.articles.map do |article|
+          article.send(:initialize_parser_and_context)
+          ::Atom::Entry.new do |e|
+            e.title   = article.name 
+            e.links << ::Atom::Link.new(:href => build_url(article.uri))
+            e.published = article.created_at
+            e.updated   = article.updated_at
+            e.content   = ::Atom::Content::Html.new(article.send(:parse_object, article))
+          end
+        end 
+      end.to_xml
+    end
+    
+    def build_url(uri)
+      @request.protocol + [@request.host, uri].join('/')
     end
     
   end

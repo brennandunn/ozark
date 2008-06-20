@@ -15,6 +15,8 @@ class Article < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
   
+  after_save :expire_atom
+  
   attr_accessor :new_comment
     
   def previous
@@ -45,6 +47,13 @@ class Article < ActiveRecord::Base
     end
     component = theme.has?('article')
     self.render(component)
+  end
+  
+  
+  private
+  
+  def expire_atom
+    cache.expire_response('feed/'+self.section.name.underscore+'.atom')
   end
   
 end

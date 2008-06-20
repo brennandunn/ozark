@@ -17,6 +17,9 @@ class RenderController < ApplicationController
     @dispatch.render ; finish!
   end
   
+  def handle_atom
+    @dispatch.render ; finish!
+  end
   
   private
   

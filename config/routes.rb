@@ -16,8 +16,8 @@ ActionController::Routing::Routes.draw do |map|
       end
     end 
   end
-  
-  map.connect ':type/:theme/:path.:ext', :controller => 'assets', :action => 'show', :type => /stylesheets|images|javascripts/      
-  map.connect '*path',  :controller => 'render',  :action => 'dispatch'
+
+  map.connect ':type/:theme/:path.:ext',  :controller => 'assets', :action => 'show', :type => /stylesheets|images|javascripts/      
+  map.connect '*path',                    :controller => 'render', :action => 'dispatch'
   
 end

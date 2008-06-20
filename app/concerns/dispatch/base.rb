@@ -16,11 +16,11 @@ module Dispatch
     def render
       unless serve_from_cache
         @response.body = if @found.respond_to?(:render)
-                          @found.current.render
+                          @found.render
                         else
                           ''
                         end
-        cache_response unless @found.skip_caching?  
+        cache_response unless @found.skip_caching?
       end              
     end
     
