@@ -1,5 +1,5 @@
 class Component < ActiveRecord::Base
-  include Versioned, Renderable
+  include Versioned, Renderable, CacheSweeper::Component
   
   belongs_to :theme
   

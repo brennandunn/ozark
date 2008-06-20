@@ -53,6 +53,14 @@ module Tags
         CodeRay.scan(code, :ruby).html( :wrap => :div )
       end
       
+      [:section, :article].each do |method|
+        tag("if_#{method}") do |tag|
+          if self.class.to_s.downcase.intern == method
+            tag.expand
+          end
+        end
+      end
+      
       tag 'stylesheet' do |tag|
         %{<link href="#{stylesheet_path(tag.attr['file'])}" media="screen" rel="stylesheet" type="text/css" />}
       end

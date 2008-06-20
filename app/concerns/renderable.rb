@@ -34,7 +34,7 @@ module Renderable
     
     # ensures this callback is executed last
     def after_save
-      cache.expire_response(route.permalink) if self.respond_to?(:route)
+      cache.expire_response(route.permalink) if self.respond_to?(:route) && !self.route.permalink.blank?
     end
     
     

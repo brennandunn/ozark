@@ -49,8 +49,14 @@ module Routeable
       @slug = str unless str.blank?
     end
     
-    def uri
-      self.route.permalink if self.route
+    def uri(prefix = false)
+      unless self.route.permalink.blank?
+        str  = prefix ? '/' : ''
+        str += self.route.permalink 
+      else
+        str  = ''
+      end
+      str
     end
     
     def dispatch_type

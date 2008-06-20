@@ -17,6 +17,14 @@ class Article < ActiveRecord::Base
   
   attr_accessor :new_comment
     
+  def previous
+    section.articles.find :first, :conditions => ['created_at > ?', created_at]
+  end  
+  
+  def next
+    section.articles.find :first, :conditions => ['created_at < ?', created_at]
+  end
+    
   def published?
     not published_at.nil?
   end

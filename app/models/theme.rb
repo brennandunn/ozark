@@ -15,6 +15,8 @@ class Theme < ActiveRecord::Base
     end
   end
   
+  has_many :sections
+  
   validates_uniqueness_of :name
   
   attr_accessor :location

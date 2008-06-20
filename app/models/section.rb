@@ -39,7 +39,7 @@ class Section < ActiveRecord::Base
     
   def infer_route_with_root!
     route.active = false unless root?
-    infer_route_without_root! if new_record?
+    infer_route_without_root!
   end
   alias_method_chain :infer_route!, :root
   

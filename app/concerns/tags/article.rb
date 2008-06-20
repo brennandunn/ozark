@@ -10,6 +10,21 @@ module Tags
         'Brennan Dunn'
       end
       
+      # next and previous
+      tag 'next_and_previous' do |tag|
+        previous_article   =  self.previous ? 
+                              %{<span class="previous"><a href="#{self.previous.uri}">&larr; #{self.previous.name}</a></span>} :
+                              nil
+        
+        next_article       =  self.next ? 
+                              %{<span class="previous"><a href="#{self.next.uri}">&rarr; #{self.next.name}</a></span>} :
+                              nil    
+                              
+        section            =  tag.attr['section'] ? %{<span class="section"><a href="#{self.section.uri(true)}">#{self.section.name}</a></span>} : nil                                      
+                    
+        %{<div class="next_and_previous">} + [previous_article, section, next_article].compact.join('') + %{</div>}
+      end
+      
       # comments
       tag('comments') { |tag| tag.expand }
       tag 'comments:each' do |tag|
