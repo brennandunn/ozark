@@ -58,7 +58,7 @@ module Routeable
     def render
       return unless @section
       ::Atom::Feed.new do |feed|
-        feed.title      = @section.name
+        feed.title      = "#{Configurator[:site, :title]} - #{@section.name}"
         feed.id         = UUID.new(:urn)
         feed.updated    = Time.now
         feed.entries    = @section.articles.map do |article|
