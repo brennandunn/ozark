@@ -62,6 +62,10 @@ module Tags
         text_area_tag 'comment[content]', nil, tag.attr
       end
       
+      tag 'input:track_updates' do |tag|
+        check_box_tag 'comment[track_updates]'
+      end
+      
       tag 'input:error' do |tag|
         return unless self.new_comment or tag.attr['on'].blank?
         self.new_comment.errors.on(tag.attr['on'].intern)

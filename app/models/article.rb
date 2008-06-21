@@ -39,6 +39,11 @@ class Article < ActiveRecord::Base
     self.published_at = str.to_i.zero? ? nil : Time.now
   end
   
+  # comments
+  def cancel_watching_for(email)
+    Comment.update_all "track_updates = 0", ["article_id = ? AND MD5(email) = ?", id, email]
+  end
+  
   def process!
     if request.post?
       self.new_comment = Comment.new(request.parameters[:comment].merge( {  :ip_address => request.remote_ip, 
@@ -53,7 +58,7 @@ class Article < ActiveRecord::Base
   private
   
   def expire_atom
-    cache.expire_response('feed/'+self.section.name.underscore+'.atom')
+    cache.expire_response('feed/'+section.name.underscore+'.atom')
   end
   
 end

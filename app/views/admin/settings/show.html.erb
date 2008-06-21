@@ -12,6 +12,11 @@
     <%= text_field_tag 'config[site][subtitle]', Configurator[:site, :subtitle] %>
   </fieldset>
   
+  <h4>Notification Email</h4>
+  <fieldset>
+    <%= text_field_tag 'config[notification_email]', Configurator[:notification_email] %>
+  </fieldset>
+  
   <h4>Akismet API Key</h4>
   <fieldset>
     <%= text_field_tag 'config[akismet_key]', Configurator[:akismet_key] %>

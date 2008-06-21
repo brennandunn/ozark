@@ -31,6 +31,15 @@ class Comment < ActiveRecord::Base
     "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}?s=60"
   end
   
+  def observers
+    article.comments.find_all_by_track_updates(true).map(&:email).uniq
+  end
+  
+  def encrypted_email
+    Digest::MD5.hexdigest(email)
+  end
+  
+  
   private
   
   def clean_email

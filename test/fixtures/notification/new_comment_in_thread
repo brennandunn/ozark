@@ -1,0 +1,3 @@
+Notification#new_comment_in_thread
+
+Find me in app/views/notification/new_comment_in_thread.erb

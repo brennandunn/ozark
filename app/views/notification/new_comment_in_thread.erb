@@ -1,0 +1,6 @@
+Hi!
+
+A new comment has been posted in "<%= @comment.article.name %>", a thread you've been watching at http://<%= @host %>
+
+To view the conversion: <%= base_url(@comment.article.uri) %>
+To stop receiving notifications for this thread, click here: <%= remove_url( :article_id => @comment.article.id, :encrypted_email => Digest::MD5.hexdigest(@email) ) %>

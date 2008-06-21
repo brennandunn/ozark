@@ -17,7 +17,8 @@ ActionController::Routing::Routes.draw do |map|
     end 
   end
 
+  map.remove  'stop_watching/:article_id/:encrypted_email', :controller => 'gateway', :action => 'stop_watching'
   map.connect ':type/:theme/:path.:ext',  :controller => 'assets', :action => 'show', :type => /stylesheets|images|javascripts/      
-  map.connect '*path',                    :controller => 'render', :action => 'dispatch'
+  map.base    '*path',                    :controller => 'render', :action => 'dispatch'
   
 end

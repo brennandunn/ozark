@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080610162722) do
+ActiveRecord::Schema.define(:version => 20080621031114) do
 
   create_table "article_versions", :force => true do |t|
     t.integer  "article_id",     :limit => 11
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(:version => 20080610162722) do
   end
 
   create_table "comments", :force => true do |t|
-    t.integer  "article_id", :limit => 11
-    t.integer  "user_id",    :limit => 11
+    t.integer  "article_id",    :limit => 11
+    t.integer  "user_id",       :limit => 11
     t.string   "name"
     t.string   "email"
     t.string   "website"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20080610162722) do
     t.string   "ip_address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "track_updates",               :default => false
   end
 
   create_table "component_versions", :force => true do |t|

@@ -55,7 +55,7 @@ class Section < ActiveRecord::Base
   alias_method_chain :infer_route!, :root
   
   def expire_atom
-    cache.expire_response('feed/'+self.name.underscore+'.atom')
+    cache.expire_response('feed/'+name.underscore+'.atom')
   end
   
 end
