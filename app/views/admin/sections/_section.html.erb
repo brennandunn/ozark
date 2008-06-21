@@ -11,7 +11,7 @@
           <td class="type"><span><%= status_of(child) %><%= child.class.to_s.downcase %></span></td>
           <td class="title"><%= link_to child.name, edit_polymorphic_path(child) %></td>
           <td class="slug"><%= child.route.display_slug %></td>
-          <td class="comments">&nbsp;<%= pluralize(child.comments.size, 'comment') if child.respond_to?(:comments) %></td>
+          <td class="comments">&nbsp;<%= pluralize(child.comments.count, 'comment') if child.respond_to?(:comments) %></td>
         </tr>  
       </table>
       <% end %>
