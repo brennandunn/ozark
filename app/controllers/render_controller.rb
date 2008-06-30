@@ -26,13 +26,14 @@ class RenderController < ApplicationController
   def path
     @path ||= [*params[:path]].join('/')
   end
+  helper_method :path
   
   def finish!
     @performed_render = true
   end
   
   def show_404
-    render :text => "Can't find resource"
+    render :template => 'errors/not_found', :layout => 'application'
   end
   
 end

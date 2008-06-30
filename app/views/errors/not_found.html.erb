@@ -1,0 +1,7 @@
+<div class="exception">
+  <h1>File not found</h1>
+  <p>The following resource was not found: <span>/<%= path %></span></p>
+  <p class="back">
+    <%= link_to "Back to #{Configurator[:site, :title]}" || 'Back to site', '/' %>
+  </p>
+</div>

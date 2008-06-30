@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080621031114) do
+ActiveRecord::Schema.define(:version => 20080630224301) do
 
   create_table "article_versions", :force => true do |t|
     t.integer  "article_id",     :limit => 11
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(:version => 20080621031114) do
     t.boolean  "root",                     :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "per_page",   :limit => 11, :default => 15
   end
 
   create_table "themes", :force => true do |t|

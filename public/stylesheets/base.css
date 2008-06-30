@@ -141,6 +141,13 @@ div.exception .back {
 	font-weight: bold;
 }
 
+div.exception p span {
+	background: #f3f3f3;
+	padding: 2px 5px;
+	border: 1px solid #ddd;
+	font: 13px courier;
+}
+
 form.model {
 	padding: 20px 0 20px 0;
 }
