@@ -5,18 +5,22 @@ class RouteTest < ActiveSupport::TestCase
   context 'recognize routes on articles and sections' do
     
     setup do
-      @section = Factory.create(:section, :name => 'Default', :slug => '/', :root => true)
-      @article = @section.articles.create :name => 'Welcome to my blog!', :published_at => Time.now
+      @section    = Factory.create(:section, :name => 'Default', :slug => '/', :root => true)
+      @article    = @section.articles.create :name => 'Welcome to my blog!', :published_at => Time.now
+      @article_2  = @section.articles.create :name => 'Article number 2', :published_at => 1.day.ago
     end
     
     should 'find article list for section' do
-      assert_equal Article.find(:all), Routeable::recognize('').articles
+      assert_equal Article.find(:all), Routeable::recognize('page-2').articles
+    end
+
+    should 'find pagination in section list' do
     end
 
     should 'find an article from permalink' do
       assert_equal @article, Routeable::recognize('welcome-to-my-blog')
     end
-    
+        
   end
 
   context 'recognize routes on pages' do

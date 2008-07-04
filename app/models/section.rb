@@ -33,11 +33,16 @@ class Section < ActiveRecord::Base
     @slug = str == '/' ? '' : str
   end
   
-  def children(limit = nil)
-    found  = articles.find(:all, :limit => limit, :order => 'updated_at desc')
-    found += pages.find(:all, :limit => limit, :order => 'updated_at desc')
+  def children(options = {})
+    options.merge!({ :order => 'updated_at desc' })
+    found  = articles.find(:all, options)
+    found += pages.find(:all, options)
     found.sort! { |x, y| y.updated_at <=> x.updated_at }
-    limit ? found[0, limit] : found
+    options[:limit] ? found[0, options[:limit]] : found
+  end
+  
+  def paginate_hash
+    { :page => @page || 1 }
   end
   
   def process!

@@ -23,7 +23,7 @@ module Tags
       tag('articles') { |tag| tag.expand }
       tag 'articles:each' do |tag|
         component = self.theme.has?('article_preview')
-        tag.locals.object.articles.published.inject('') do |str, article|
+        tag.locals.object.articles.published.paginate(tag.locals.object.paginate_hash).inject('') do |str, article|
           str << article.render(component)
         end
       end
