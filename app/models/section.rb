@@ -35,8 +35,8 @@ class Section < ActiveRecord::Base
   
   def children(options = {})
     options.merge!({ :order => 'updated_at desc' })
-    found  = articles.find(:all, options)
-    found += pages.find(:all, options)
+    found  = articles.all(options)
+    found += pages.all(options)
     found.sort! { |x, y| y.updated_at <=> x.updated_at }
     options[:limit] ? found[0, options[:limit]] : found
   end

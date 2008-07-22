@@ -29,6 +29,7 @@ class Admin::SectionsController < ApplicationController
     redirect_to :action => :index
   end
   
+  
   private
   
   def get_or_build_section

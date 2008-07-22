@@ -4,7 +4,7 @@
     <%= section.name %>
     <span><%= 'inactively ' unless section.root? %>mapped to <%= section.route.display_permalink %></span>
   </h2>
-    <% section.children(3).each do |child| %>
+    <% section.children(:limit => 3).each do |child| %>
       <% div_for child do %>
       <table class="summary">
         <tr>

@@ -27,6 +27,11 @@
   <fieldset>
     <%= f.select :theme_id, Theme.all.map { |x| [ x.name, x.id ] } %>
   </fieldset>  
+  
+  <h4>Entries per page</h4>
+  <fieldset>
+    <%= f.text_field :per_page, :size => 3 %>
+  </fieldset>  
     
   <%= submit_tag 'Save' %>
   

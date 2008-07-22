@@ -11,7 +11,7 @@ class RouteTest < ActiveSupport::TestCase
     end
     
     should 'find article list for section' do
-      assert_equal Article.find(:all), Routeable::recognize('page-2').articles
+      assert_equal Article.find(:all), Routeable::recognize('').articles
     end
 
     should 'find pagination in section list' do
