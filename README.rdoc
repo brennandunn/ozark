@@ -10,9 +10,11 @@ The goal of Ozark is to create a simple and sleek blog application that's meant 
 
 * Sections are composed of articles and pages, and whatever else you might want.
 
-* A UI that your grandmother could use
+* A UI that your grandmother could use.
 
 * Convention over configuration. No fluff for the sake of a long list of features. Caters to the majority.
+
+* Easy pagination for sections.
 
 
 === What are some goals?
@@ -25,10 +27,6 @@ The goal of Ozark is to create a simple and sleek blog application that's meant 
 
 
 === TODO
-
-Some things I plan on knocking out, in no particular order.
-
-* Pagination. Hopefully I don't write > 10 posts on my production deployment before getting this in place.
 
 
 === License
