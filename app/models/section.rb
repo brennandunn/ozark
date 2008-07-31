@@ -42,12 +42,21 @@ class Section < ActiveRecord::Base
   end
   
   def paginate_hash
-    { :page => @page || 1 }
+    { :page => params(:page_number) || 1, :per_page => per_page }
   end
   
   def process!
     component = theme.has?('section')
     self.render(component)
+  end
+  
+  def total_pages
+    (articles.count / per_page.to_f).ceil
+  end
+  
+  def ok?
+    return true unless params(:page_number)
+    total_pages >= params(:page_number).to_i
   end
   
   

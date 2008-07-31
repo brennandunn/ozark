@@ -9,15 +9,18 @@ module Routeable
     end
   end
   
-  def self.recognize(route_string, request = nil)
-    route_string = route[0...-1] if route_string.last == '/' and route_string.length > 1  # strip trailing slashes
+  def self.recognize(path_string, request = nil)
+    path_string = path_string[0...-1] if path_string.last == '/' and path_string.length > 1  # strip trailing slashes
+    route_string, params = extract_params!(path_string)
     if route_string.ends_with?('.atom')
       Atom.new(route_string, request)
     elsif route = Route.find_by_permalink_and_active(route_string, true)
       if route.redirect_to.blank?
         unless route.associated.respond_to?(:published_at) and route.associated.published_at.nil?
           if request
+            request.parameters.merge!(params)
             route.associated.set_request(request)
+            route.associated.ok? ? route.associated : nil
           else
             route.associated
           end
@@ -26,6 +29,14 @@ module Routeable
         Redirect.new(route.redirect_to)
       end
     end
+  end
+  
+  def self.extract_params!(string)
+    params = {}
+    if string =~ /(.*?)page(\d+)$/
+      string, params[:page_number] = $1, $2
+    end
+    [string, params]
   end
   
   class Redirect
@@ -111,6 +122,15 @@ module Routeable
     def set_request(request)
       @request = request
       self
+    end
+    
+    def params(key)
+      request.parameters[key] if request
+    end
+    
+    # overwrite as necessary
+    def ok?
+      true
     end
     
     

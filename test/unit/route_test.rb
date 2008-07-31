@@ -14,7 +14,14 @@ class RouteTest < ActiveSupport::TestCase
       assert_equal Article.find(:all), Routeable::recognize('').articles
     end
 
-    should 'find pagination in section list' do
+    should 'find paginate a section' do
+      Section.any_instance.stubs(:per_page).returns(1)
+      request = ActionController::AbstractRequest.new
+      request.stubs(:parameters).returns({})
+      assert_equal 2, Routeable::recognize('').total_pages
+      assert Routeable::recognize('page1', request)
+      assert Routeable::recognize('page2', request)
+      assert ! Routeable::recognize('page3', request)
     end
 
     should 'find an article from permalink' do
