@@ -28,7 +28,7 @@ class Comment < ActiveRecord::Base
   alias_method_chain :spam?, :key_defined
   
   def gravatar_url
-    "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}?s=60"
+    "http://www.gravatar.com/avatar/#{encrypted_email}?s=60"
   end
   
   def observers
